@@ -1,0 +1,83 @@
+{% extends 'visitor/baze.html' %}
+{% block content %}
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Comissões e Planos</h2>
+
+                <!-- Buttons for each year -->
+                <center>
+                    <div class="btn-group" role="group" aria-label="Year buttons">
+                        {% for year in years %}
+                        <button type="button" class="btn btn-secondary" onclick="showYearPlans('{{ year }}')">
+                            {{ year }}
+                        </button>
+                        {% endfor %}
+                    </div>
+                </center>
+
+                <!-- List of tables for each year -->
+                {% for year in years %}
+                <div class="year-table" id="year-{{ year }}" style="display: {% if forloop.first %} block {% else %} none {% endif %};">
+                    <h3>Planos para o ano de {{ year }}</h3>
+                    
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Comissão</th>
+                                <th>Plano</th>
+                                <th>Descrição</th>
+                                <th>Download</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for comissao in comissoes %}
+                                {% for planu in comissao.dettaluplano_set.all %}
+                                    {% if planu.year == year %}
+                                    <tr>
+                                        <td>{{ comissao.nome }}</td>
+                                        <td>{{ planu.title }}</td>
+                                        <td>{{ planu.description }}</td>
+                                        <td>
+                                            {% if planu.file %}
+                                            <a href="{{ planu.file.url }}" class="btn btn-primary" download>Download</a>
+                                            {% else %}
+                                            <span>No file available</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Function to show the table for the selected year and hide others
+    function showYearPlans(year) {
+        // Hide all tables
+        document.querySelectorAll('.year-table').forEach(function(table) {
+            table.style.display = 'none';
+        });
+
+        // Show the selected year's table
+        document.getElementById('year-' + year).style.display = 'block';
+    }
+</script>
+
+<style>
+    /* Make year buttons look nice */
+    .btn-group .btn {
+        margin-right: 10px;
+    }
+</style>
+
+{% endblock %}

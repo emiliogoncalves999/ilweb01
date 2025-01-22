@@ -1,0 +1,343 @@
+import os
+from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.views.decorators.csrf import csrf_exempt
+import json
+from django.utils import timezone
+
+from django.db.models import Count
+from django.contrib import messages
+from django.shortcuts import get_object_or_404
+from django.db.models import Q
+from datetime import date
+from django.http import JsonResponse
+
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import authenticate, login, logout
+
+
+from django.contrib.auth.decorators import login_required
+
+from django.conf import settings
+from django.http import HttpResponse
+from django.utils import translation
+from django.utils.translation import *
+from django.contrib.auth.models import User
+
+from django.http import HttpResponseRedirect
+
+
+from django.template.loader import render_to_string
+
+from django.contrib.auth.models import Group
+
+from centropastoral.models import CentroPastoral
+from perfil.models import Congregacao, EisSeminaristaExReligioso, EskolaCatolico, GrupuCategorial, PadreMadre, PerfilParoquiaSAJOBRIL, ProfessorReligiaoCatolico
+from planodesenvolvimento.models import DettaluPlano, Planu
+from visitor.models import AnnualPlan, Atendimentu, Atividade, Aunsiu, Eventu, Missa
+
+
+
+
+def index(request):
+
+
+    atividades = Atividade.objects.all().order_by('id')
+    paginator = Paginator(atividades, 20)  # Show 20 activities per page
+
+    page_number = request.GET.get('page')  # Get the page number from the URL
+    page_obj = paginator.get_page(page_number)  # Get the activities for that page
+
+
+    context = {
+        'page_obj': page_obj,
+        'pajinaatividade': 'active',
+    }
+    return render(request,'visitor/uma.html', context)
+
+
+
+def atividade(request):
+    atividades = Atividade.objects.all().order_by('id')
+    paginator = Paginator(atividades, 20)  # Show 20 activities per page
+
+    page_number = request.GET.get('page')  # Get the page number from the URL
+    page_obj = paginator.get_page(page_number)  # Get the activities for that page
+
+    context = {
+        'page_obj': page_obj,
+        'pajinaatividade': 'active',
+   # Pass the page object to the template
+    }
+    return render(request, 'visitor/atividade.html', context)
+
+
+def atividade_detail(request, id):
+    latest_activities = Atividade.objects.exclude(id=id).order_by('-date')[:5]  # Get the latest 5 activities excluding the current one
+    atividade = get_object_or_404(Atividade, pk=int(id))  # Fetch the Atividade instance by its primary key
+    context = {
+        'latest_activities': latest_activities,
+        'atividade': atividade,  # Pass the Atividade object to the template
+    }
+    return render(request, 'visitor/detallu_atividade.html', context)
+
+
+
+
+def konaba(request):
+    context = {
+        'pajinakonaba' : 'active',
+    }
+    return render(request,'visitor/konaba.html', context)
+
+
+
+def misa(request):
+    # Fetch and paginate Masses (Missa)
+    missa_list = Missa.objects.all().order_by('id')
+    missa_paginator = Paginator(missa_list, 20)  # Show 20 masses per page
+    missa_page_number = request.GET.get('misa_page')  # Get the misa page number from the URL
+    misa_page_obj = missa_paginator.get_page(missa_page_number)  # Get the masses for that page
+
+    # Fetch and paginate Events (Eventu)
+    event_list = Eventu.objects.all().order_by('id')
+    event_paginator = Paginator(event_list, 20)  # Show 20 events per page
+    event_page_number = request.GET.get('event_page')  # Get the event page number from the URL
+    event_page_obj = event_paginator.get_page(event_page_number)  # Get the events for that page
+
+    context = {
+        'pajinamisa': 'active',
+        'misa_page_obj': misa_page_obj,  # Pass the misa page object to the template
+        'event_page_obj': event_page_obj,  # Pass the event page object to the template
+    }
+
+    return render(request, 'visitor/misa.html', context)
+
+def misa_detail(request, id):
+    latest_misa = Missa.objects.exclude(id=id).order_by('-id')[:5]  # Get the latest 5 activities excluding the current one
+    misa = get_object_or_404(Missa, pk=int(id))  # Fetch the Atividade instance by its primary key
+    context = {
+        'latest_misa': latest_misa,
+        'misa': misa,  # Pass the Atividade object to the template
+    }
+    return render(request, 'visitor/detallu_misa.html', context)
+
+
+
+    
+
+def eventu(request):
+    context = {
+        'pajinaeventu' : 'active',
+    }
+    return render(request,'visitor/eventu.html', context)
+
+
+def anunsiu(request):
+    # Fetch and paginate Announcements
+    announcement_list = Aunsiu.objects.all().order_by('-date_published')
+    paginator = Paginator(announcement_list, 10)  # Show 10 announcements per page
+    page_number = request.GET.get('page')  # Get the page number from the URL
+    page_obj = paginator.get_page(page_number)  # Get the announcements for that page
+
+    context = {
+        'pajinaanunsiu': 'active',
+        'page_obj': page_obj,  # Pass the page object to the template
+    }
+
+    return render(request, 'visitor/anunsiu.html', context)
+
+
+
+def anunsiu_detail(request, id):
+    latest_anunsiu = Aunsiu.objects.exclude(id=id).order_by('-id')[:5]  # Get the latest 5 activities excluding the current one
+    misa = get_object_or_404(Aunsiu, pk=int(id))  # Fetch the Atividade instance by its primary key
+    context = {
+        'latest_misa': latest_anunsiu,
+        'misa': misa,  # Pass the Atividade object to the template
+    }
+    return render(request, 'visitor/detallu_anunsiu.html', context)
+
+
+
+
+def atendimentu(request):
+    # Fetch and paginate Atendimentos
+    atendimento_list = Atendimentu.objects.all().order_by('-date')
+    paginator = Paginator(atendimento_list, 6)  # Show 6 atendimentos per page
+    page_number = request.GET.get('page')  # Get the page number from the URL
+    page_obj = paginator.get_page(page_number)  # Get the atendimentos for that page
+
+    context = {
+        'pajinaatendimentu': 'active',
+        'page_obj': page_obj,  # Pass the page object to the template
+    }
+
+    return render(request, 'visitor/atendimentu.html', context)
+
+
+def atendimentu_detail(request, id):
+    atendimentu = get_object_or_404(Atendimentu, pk=int(id))
+    attachments = atendimentu.attachments.all()  # Get all related attachments
+    other_atendimentos = Atendimentu.objects.exclude(pk=int(id)).order_by('-date')[:5]  # Get 5 other atendimentos
+
+    context = {
+        'atendimentu': atendimentu,
+        'attachments': attachments,
+        'other_atendimentos': other_atendimentos,
+    }
+
+    return render(request, 'visitor/atendimentu_detail.html', context)
+
+
+def planu(request):
+    annual_plans_list = AnnualPlan.objects.all()
+    paginator = Paginator(annual_plans_list, 3)  # Show 3 plans per page
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'pajinaplanu': 'active',
+        'page_obj': page_obj,
+    }
+    return render(request, 'visitor/planu.html', context)
+
+
+
+def planu_detail(request, id):
+ 
+    annual_plan = get_object_or_404(AnnualPlan, pk=int(id))
+    other_plans = AnnualPlan.objects.exclude(pk=int(id))[:5]  # Fetch other plans, limiting to 5
+
+    context = {
+        'annual_plan': annual_plan,
+        'other_plans': other_plans,
+    }
+    return render(request, 'visitor/planu_detail.html', context)
+
+
+
+def detallu(request):
+    context = {
+        'pajinadetallu' : 'active',
+    }
+    return render(request,'visitor/detallu.html', context)
+
+
+def perfilsazobril(request):
+
+    perfil = PerfilParoquiaSAJOBRIL.objects.all().last()
+
+    context = {
+        'perfil' : perfil,
+        'pajinadetallu' : 'active',
+    }
+    return render(request,'visitor/perfilsazobril.html', context)
+
+
+
+def recursohumanos(request):
+    profesor = ProfessorReligiaoCatolico.objects.all()
+    padre = PadreMadre.objects.filter(tipo='padre')
+    madre = PadreMadre.objects.filter(tipo='madre')
+
+
+    exseminarista = EisSeminaristaExReligioso.objects.all()
+
+    perfil = PerfilParoquiaSAJOBRIL.objects.all().last()
+
+    context = {
+        'perfil' : perfil,
+        'profesor' : profesor,
+        'padre' : padre,
+        'madre' : madre,
+        'exseminarista' : exseminarista,
+        'pajinadetallu' : 'active',
+    }
+    return render(request,'visitor/recursohumanos.html', context)
+
+
+
+def congregacao(request):
+    congregacao = Congregacao.objects.all()
+   
+
+ 
+    context = {
+        'congregacao' : congregacao,
+      
+        'pajinadetallu' : 'active',
+    }
+    return render(request,'visitor/congregacao.html', context)
+
+
+def eskolacatolico(request):
+    eskolacatolico = EskolaCatolico.objects.all()
+   
+
+ 
+    context = {
+        'eskolacatolico' : eskolacatolico,
+      
+        'pajinadetallu' : 'active',
+    }
+    return render(request,'visitor/eskolacatolico.html', context)
+
+
+def grupucategorial(request):
+    grupucategorial = GrupuCategorial.objects.all()
+   
+
+ 
+    context = {
+        'grupucategorial' : grupucategorial,
+      
+        'pajinadetallu' : 'active',
+    }
+    return render(request,'visitor/grupucategorial.html', context)
+
+def centropastoral(request):
+    centropastoral = CentroPastoral.objects.all()
+   
+
+ 
+    context = {
+        'centropastoral' : centropastoral,
+      
+        'pajinadetallu' : 'active',
+    }
+    return render(request,'visitor/centropastoral.html', context)
+
+
+
+
+
+
+from django.shortcuts import render
+from comissaun.models import Comissaun, PlanuComisaun
+
+def comissaun(request):
+    # Get all Comissaun and related PlanuComisaun
+    comissoes = Comissaun.objects.all()
+    
+    # Get a distinct list of years from PlanuComisaun
+    years = PlanuComisaun.objects.values_list('year', flat=True).distinct()
+    
+    context = {
+        'comissoes': comissoes,
+        'years': years,
+    }
+    return render(request, 'visitor/comissaun.html', context)
+
+def planudezenvolvimentu(request):
+    years = DettaluPlano.objects.values_list('year', flat=True).distinct().order_by('year')
+    comissoes = Planu.objects.prefetch_related('dettaluplano_set').all()
+
+    context = {
+        'years': years,
+        'comissoes': comissoes,
+    }
+
+    return render(request, 'visitor/planudezenvolvimentu.html', context)

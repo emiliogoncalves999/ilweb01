@@ -1,0 +1,69 @@
+{% extends 'visitor/baze.html' %}
+{% block content %}
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-2">
+            <div class="col-md-8 text-center heading-section ftco-animate">
+                <h2 class="mb-4" style="font-weight: bold; color: #333;">Planu Anual</h2>
+                <hr style="border-top: 2px solid #007bff; width: 60px; margin: auto;">
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            {% for plan in page_obj %}
+            <div class="col-md-4 ftco-animate fadeInUp ftco-animated">
+                <div class="blog-entry shadow-sm">
+                    <a href="#" class="block-20" style="background-image: url('{{ plan.image.url|default:'../media/sistem/plan.png' }}');">
+                        <div class="meta-date text-center p-2">
+                            <span class="yr">{{ plan.year }}</span>
+                        </div>
+                    </a>
+                    <div class="text bg-white p-4">
+                        <h3 class="heading"><a href="#">{{ plan.title }}</a></h3>
+                        <p>{{ plan.description|slice:":200" }}...</p>
+                        <div class="d-flex align-items-center mt-4">
+                            <p class="mb-0">
+                                <a href="{% url 'vizitor:planu_detail' plan.id %}" class="btn btn-sm btn-primary">Download <span class="ion-ios-arrow-round-forward"></span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col text-center">
+                <div class="block-27" style="display: inline-block;">
+                    <ul class="pagination" style="list-style: none; padding: 0;">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page=1" style="color: #007bff;">&laquo;&laquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}" style="color: #007bff;">&laquo;</a></li>
+                        {% endif %}
+
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                                <li class="page-item active" aria-current="page">
+                                    <span class="page-link" style="background-color: #007bff; border-color: #007bff; color: white;">{{ num }}</span>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ num }}" style="color: #007bff;">{{ num }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}" style="color: #007bff;">&raquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" style="color: #007bff;">&raquo;&raquo;</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

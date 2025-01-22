@@ -1,0 +1,72 @@
+{% extends 'visitor/baze.html' %}
+{% block content %}
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-2">
+            <div class="col-md-8 text-center heading-section ftco-animate">
+                <h2 class="mb-4">Atividade Ikus liu</h2>
+                <hr><br>
+            </div>
+        </div>
+        <div class="row">
+            {% for atividade in page_obj %}
+            <div class="col-md-4 ftco-animate">
+                <div class="blog-entry">
+                    <a href="blog-single.html" class="block-20" style="background-image: url('{{ atividade.image.url }}');">
+                        <div class="meta-date text-center p-2">
+                            <span class="day">{{ atividade.date|date:"d" }}</span>
+                            <span class="mos">{{ atividade.date|date:"F" }}</span>
+                            <span class="yr">{{ atividade.date|date:"Y" }}</span>
+                        </div>
+                    </a>
+                    <div class="text bg-white p-4">
+                        <h3 class="heading"><a href="#">{{ atividade.name }}</a></h3>
+                        <p>{{ atividade.description|truncatewords:20|safe }}</p>
+                        <div class="d-flex align-items-center mt-4">
+                            <p class="mb-0"><a href="{% url 'vizitor:atividade_detail' atividade.id %}" class="btn btn-sm btn-primary">Read More <span class="ion-ios-arrow-round-forward"></span></a></p>
+                            <p class="ml-auto mb-0">
+                                <a href="#" class="mr-2">Admin</a>
+                                <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No activities available.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="row">
+            <div class="col text-center">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% for num in page_obj.paginator.page_range %}
+                        <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

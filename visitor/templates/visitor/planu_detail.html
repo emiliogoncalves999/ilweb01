@@ -1,0 +1,74 @@
+{% extends 'visitor/baze.html' %}
+{% block content %}
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-2">
+            <div class="col-md-8 text-center heading-section ftco-animate">
+                <h2 class="mb-4">{{ annual_plan.title }}</h2><hr><br>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-md-8 ftco-animate">
+                <div class="blog-entry">
+                    <center>
+                        <img src="{% if annual_plan.image %}{{ annual_plan.image.url }}{% endif %}" style="width: 400px;" alt="{{ annual_plan.title }}" class="img-fluid">
+                    </center>
+                    <div class="text bg-white p-4 mt-3">
+                        <h3>{{ annual_plan.title }}</h3>
+                        <p><strong>Data Início:</strong> {{ annual_plan.start_date|date:"F j, Y" }}</p>
+                        <p><strong>Data Fim:</strong> {{ annual_plan.end_date|date:"F j, Y" }}</p>
+                        <h4>Details</h4>
+                        <p>{{ annual_plan.description }}</p>
+                        <h4>Documents</h4>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>File Name</th>
+                                    <th>Download</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for attachment in annual_plan.attachments.all %}
+                                <tr>
+                                    <td>{{ attachment.file.name }}</td>
+                                    <td><a href="{{ attachment.file.url }}" download class="btn btn-sm btn-primary">Download</a></td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="2">No documents available.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar with Other Plans -->
+            <div class="col-md-4 ftco-animate">
+                <div class="sidebar-box">
+                    <h3>Other Plans</h3>
+                    <ul class="list-unstyled">
+                        {% for other in other_plans %}
+                        <li>
+                            <a href="{% url 'annual_plan_detail' other.id %}">
+                                <img src="{% if other.image %}{{ other.image.url }}{% endif %}" alt="{{ other.title }}" class="img-fluid mb-2">
+                                <p>{{ other.title }}</p>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col text-center">
+                <a href="{% url 'vizitor:planu' %}" class="btn btn-primary">Back to Plans</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'visitor/baze.html' %}
+{% block content %}
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-2">
+            <div class="col-md-8 text-center heading-section ftco-animate">
+                <h2 class="mb-4">{{ misa.name }}</h2>
+            <hr>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Detail View Column -->
+            <div class="col-md-8 ftco-animate">
+                <div class="blog-entry">
+                    <div class="block-20" style="background-image: url('{{ misa.image.url }}'); height: 400px; background-size: cover; background-position: center;">
+                    </div>
+                    <div class="text bg-white p-4 mt-4">
+                        <h3 class="heading">{{ misa.title }}</h3>
+                        <p>{{ misa.description|safe }}</p>
+                        <hr>
+                            <small>Data Publikasaun : {{ misa.date|date:"d F, Y" }}</small>
+
+                        <div class="d-flex align-items-center mt-4">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latest Activities Column -->
+            <div class="col-md-4 ftco-animate">
+                <h4>Latest Activities</h4>
+                <ul class="list-group">
+                    {% for latest in latest_misa %}
+                    <li class="list-group-item d-flex align-items-center">
+                        <div class="row w-100">
+                            <!-- Column for Image -->
+                            <div class="col-md-4">
+                                <div class="block-20" style="background-image: url('{{ latest.image.url }}'); background-size: cover; background-position: center; height: 100px; width: 100px; border-radius: 8px;"></div>
+                            </div>
+                            <!-- Column for Title and Date -->
+                            <div class="col-md-8">
+                                <h5>{{ latest.name }}</h5>
+                                <small>{{ latest.date|date:"d F, Y" }}</small>
+                            </div>
+                        </div>
+                    </li>
+                    {% empty %}
+                    <li class="list-group-item">No recent activities available.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+{% endblock %}

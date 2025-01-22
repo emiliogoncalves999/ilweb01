@@ -1,0 +1,122 @@
+{% extends 'visitor/baze.html' %}
+{% block content %}
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h2>Centro Pastoral</h2>
+
+                <!-- Adjust the nav-tabs to use Bootstrap classes for responsiveness -->
+                <ul class="nav nav-tabs flex-column flex-sm-row" id="centro-tabs">
+                    {% for centro in centropastoral %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if forloop.first %}active{% endif %}" 
+                           id="tab-{{ forloop.counter }}" 
+                           href="#content-{{ forloop.counter }}" 
+                           data-toggle="tab">
+                           {{ centro.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="tab-content mt-3">
+                    {% for centro in centropastoral %}
+                    <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" 
+                         id="content-{{ forloop.counter }}">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-3 text-center">
+                                        {% if centro.logo %}
+                                        <img src="{{ centro.logo.url }}" alt="{{ centro.name }}" class="img-fluid" style="max-width: 120px; max-height: 120px;">
+                                        {% else %}
+                                        <img src="https://via.placeholder.com/120" alt="No Logo" class="img-fluid">
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <h5 class="card-title">{{ centro.name }}</h5>
+                                        <p class="card-text"><strong>História de Existência:</strong> {{ centro.historia_existencia|truncatewords:30 }}</p>
+                                    </div>
+
+                                    <div class="col-md-3 text-center">
+                                        <p class="card-text"><strong>Estação Missionário:</strong></p>
+                                        <p class="card-text">{{ centro.estasaun_misionario }}</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12 text-center">
+                                        <strong>Estrutura Estasaun Misionario:</strong>
+                                        {% if centro.estrutura %}
+                                        <img src="{{ centro.estrutura.url }}" alt="Estrutura of {{ centro.name }}" class="img-fluid" style="max-width: 100%; max-height: 200px;">
+                                        {% else %}
+                                        <p class="text-muted">No Estrutura Image Available</p>
+                                        {% endif %}
+
+                                        <strong>Estrutura Bairo:</strong>
+                                        {% if centro.estrutura %}
+                                        <img src="{{ centro.estrutura.url }}" alt="Estrutura of {{ centro.name }}" class="img-fluid" style="max-width: 100%; max-height: 200px;">
+                                        {% else %}
+                                        <p class="text-muted">No Estrutura Image Available</p>
+                                        {% endif %}
+                                    </div>
+
+
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .nav-tabs {
+        /* Always display tabs in a column by default */
+        flex-direction: column;
+    }
+
+    @media (min-width: 576px) {
+        .nav-tabs {
+            /* Switch to a row for small screens and above */
+            flex-direction: row;
+            justify-content: center;
+        }
+    }
+
+    .nav-tabs .nav-link.active {
+        background-color: #8B4513; /* Active tab color */
+        color: white;
+    }
+
+    .nav-tabs .nav-link {
+        color: #555; /* Default tab color */
+    }
+
+    .nav-tabs .nav-link:hover {
+        color: #000; /* Hover color */
+    }
+
+    .tab-content {
+        padding-top: 20px; /* Padding for tab content */
+    }
+
+    .card {
+        transition: transform 0.2s; /* Smooth transition on hover */
+    }
+
+    .card:hover {
+        transform: scale(1.02); /* Scale effect on hover */
+    }
+</style>
+
+{% endblock %}

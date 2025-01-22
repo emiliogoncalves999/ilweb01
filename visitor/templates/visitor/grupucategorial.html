@@ -1,0 +1,75 @@
+{% extends 'visitor/baze.html' %}
+{% block content %}
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h2>Grupu Categorial  Sira</h2>
+                
+                <div class="row">
+                    {% for dados in grupucategorial %}
+                    <div class="col-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <!-- Column 1: Image/Logo -->
+                                    <div class="col-md-2 text-center">
+                                        {% if dados.imagen %}
+                                        <img src="{{ dados.imagen.url }}" alt="{{ dados.nome }}" class="img-fluid" style="max-width: 100px; max-height: 100px;">
+                                        {% else %}
+                                        <img src="https://via.placeholder.com/100" alt="No Logo" class="img-fluid">
+                                        {% endif %}
+                                    </div>
+
+                                    <!-- Column 2: Name/Description (Expanded Column) -->
+                                    <div class="col-md-7">
+                                        <h5 class="card-title">{{ dados.nome }}</h5>
+                                        <p class="card-text">{{ dados.deskrisau }}</p>
+                                    </div>
+
+                                    <!-- Column 3: Download Button -->
+                                    <div class="col-md-3 text-center">
+                                        {% if dados.file %}
+                                        <a href="{{ dados.file.url }}" class="btn btn-primary">Download dokumentu</a>
+                                        {% else %}
+                                        <p class="text-muted">File Laiha</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-12">
+                        <p>Nenhum congregacao registradu.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .nav-tabs .nav-link.active {
+        background-color: #8B4513;
+        color: white;
+    }
+
+    .nav-tabs .nav-link {
+        color: #555;
+    }
+
+    .nav-tabs .nav-link:hover {
+        color: #000;
+    }
+
+    .tab-content {
+        padding-top: 20px;
+    }
+</style>
+
+{% endblock %}

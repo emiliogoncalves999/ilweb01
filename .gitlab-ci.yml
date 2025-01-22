@@ -1,0 +1,16 @@
+stages:
+  - build_deploy
+  - deploy
+
+# REST API - Staging mode
+build-maven-docker-api:
+  stage: build_deploy
+  environment:
+    name: staging
+  script:
+    - docker build -t $TIC_DOCKER_HOST/$TIC_DOCKER_USERNAME/$TIC_CAPROVER_APP:$CI_COMMIT_SHA .
+    - docker login -u $TIC_DOCKER_USERNAME -p $TIC_DOCKER_PWD $TIC_DOCKER_HOST
+    - docker push $TIC_DOCKER_HOST/$TIC_DOCKER_USERNAME/$TIC_CAPROVER_APP:$CI_COMMIT_SHA
+    - docker run caprover/cli-caprover:2.3.0 caprover deploy --caproverUrl $TIC_CAPROVER_URL --caproverPassword $TIC_CAPROVER_PWD --caproverApp $TIC_CAPROVER_APP --imageName $TIC_DOCKER_HOST/$TIC_DOCKER_USERNAME/$TIC_CAPROVER_APP:$CI_COMMIT_SHA
+  only:
+    - develop

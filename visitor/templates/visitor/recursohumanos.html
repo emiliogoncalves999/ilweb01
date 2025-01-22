@@ -1,0 +1,241 @@
+{% extends 'visitor/baze.html' %}
+{% block content %}
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="cpp-tab" data-toggle="tab" href="#cpp" role="tab"
+                            aria-controls="cpp" aria-selected="true">Estrutura (CPP) no (CEP)</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="professor-tab" data-toggle="tab" href="#professor" role="tab"
+                            aria-controls="professor" aria-selected="false">Professoar/a Religião Católico</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="padre-tab" data-toggle="tab" href="#padre" role="tab"
+                            aria-controls="padre" aria-selected="false">Padre Liquiçá oan</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="madre-tab" data-toggle="tab" href="#madre" role="tab"
+                            aria-controls="madre" aria-selected="false">Madre Liquiçá oan</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="exseminarista-tab" data-toggle="tab" href="#exseminarista" role="tab"
+                            aria-controls="exseminarista" aria-selected="false">Eis-Seminarista no Ex Religioso/a</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="cpp" role="tabpanel" aria-labelledby="cpp-tab">
+                        <!-- Content for CPP/CEP -->
+                        <div class="col-md-12 mb-12">
+                            <br>
+                            <div class="topic-section p-4 border rounded shadow-sm h-100">
+                                <h4 class="topic-title">Estrutura Conselho Pastoral Paróquia (CPP)</h4>
+                                <hr>
+                                <div class="location-map text-center">
+                                    <img src="{{perfil.ecp.url}}" alt="Mapa da Área Geográfica"
+                                        class="img-fluid rounded">
+                                </div>
+                                <hr>
+                                <h4 class="topic-title">Estrutura Conselho Económico Paroquial (CEP)</h4>
+                                <hr>
+                                <div class="location-map text-center">
+                                    <img src="{{perfil.cep.url}}" alt="Mapa da Área Geográfica"
+                                        class="img-fluid rounded">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="professor" role="tabpanel" aria-labelledby="professor-tab">
+    
+                            <div class="col-md-12">
+                                <h2>Lista de Professores de Religião Católico</h2>
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Data de Nascimento</th>
+                                            <th>Telefone</th>
+                                            <th>Email</th>
+                                            <th>Foto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for profesor in profesor %}
+                                        <tr>
+                                            <td>{{ professor.nome }}</td>
+                                            <td>{{ professor.data_nascimento|date:"d/m/Y" }}</td>
+                                            <td>{{ professor.telefone }}</td>
+                                            <td>{{ professor.email }}</td>
+                                            <td>
+                                                {% if professor.foto %}
+                                                <img src="{{ professor.foto.url }}" alt="{{ professor.nome }}"
+                                                    width="50" height="50">
+                                                {% else %}
+                                                Sem foto
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="5">Nenhum professor encontrado.</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                     
+                    </div>
+                    <div class="tab-pane fade" id="padre" role="tabpanel" aria-labelledby="padre-tab">
+                        <div class="col-md-12">
+                            <h2>Lista de Padres</h2>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Tipo</th>
+                                        <th>Data de Nascimento</th>
+                                        <th>Telefone</th>
+                                        <th>Email</th>
+                                        <th>Foto</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for padre_madre in padre %}
+                                    <tr>
+                                        <td>{{ padre_madre.nome }}</td>
+                                        <td>{{ padre_madre.get_tipo_display }}</td>
+                                        <td>{{ padre_madre.data_nascimento|date:"d/m/Y" }}</td>
+                                        <td>{{ padre_madre.telefone }}</td>
+                                        <td>{{ padre_madre.email }}</td>
+                                        <td>
+                                            {% if padre_madre.foto %}
+                                            <img src="{{ padre_madre.foto.url }}" alt="{{ padre_madre.nome }}"
+                                                width="50" height="50">
+                                            {% else %}
+                                            Sem foto
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="6">Nenhum padre ou madre encontrado.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="madre" role="tabpanel" aria-labelledby="madre-tab">
+                        <div class="col-md-12 mt-5">
+                            <h2>Lista de Madres</h2>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Tipo</th>
+                                        <th>Data de Nascimento</th>
+                                        <th>Telefone</th>
+                                        <th>Email</th>
+                                        <th>Foto</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for padre_madre in madre %}
+                                    <tr>
+                                        <td>{{ padre_madre.nome }}</td>
+                                        <td>{{ padre_madre.get_tipo_display }}</td>
+                                        <td>{{ padre_madre.data_nascimento|date:"d/m/Y" }}</td>
+                                        <td>{{ padre_madre.telefone }}</td>
+                                        <td>{{ padre_madre.email }}</td>
+                                        <td>
+                                            {% if padre_madre.foto %}
+                                            <img src="{{ padre_madre.foto.url }}" alt="{{ padre_madre.nome }}"
+                                                width="50" height="50">
+                                            {% else %}
+                                            Sem foto
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="6">Nenhum padre ou madre encontrado.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="exseminarista" role="tabpanel" aria-labelledby="exseminarista-tab">
+                        <div class="col-md-12 mt-5">
+                            <h2>Lista de Eis-Seminaristas e Ex-Religiosos/as</h2>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Data de Nascimento</th>
+                                        <th>Telefone</th>
+                                        <th>Email</th>
+                                        <th>Foto</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for seminarista in exseminarista %}
+                                    <tr>
+                                        <td>{{ seminarista.nome }}</td>
+                                        <td>{{ seminarista.data_nascimento|date:"d/m/Y" }}</td>
+                                        <td>{{ seminarista.telefone }}</td>
+                                        <td>{{ seminarista.email }}</td>
+                                        <td>
+                                            {% if seminarista.foto %}
+                                                <img src="{{ seminarista.foto.url }}" alt="{{ seminarista.nome }}" width="50" height="50">
+                                            {% else %}
+                                                Sem foto
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="5">Nenhum eis-seminarista ou ex-religioso encontrado.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .nav-tabs .nav-link.active {
+        background-color: #8B4513;
+        /* Brown color */
+        color: white;
+    }
+
+    .nav-tabs .nav-link {
+        color: #555;
+        /* Default tab color */
+    }
+
+    .nav-tabs .nav-link:hover {
+        color: #000;
+        /* Hover color */
+    }
+
+    .tab-content {
+        padding-top: 20px;
+    }
+</style>
+
+{% endblock %}

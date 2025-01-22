@@ -1,0 +1,77 @@
+{% extends 'visitor/baze.html' %}
+{% block content %}
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-2">
+            <div class="col-md-8 text-center heading-section ftco-animate">
+                <h2 class="mb-4" style="font-weight: bold; color: #333;">Atendimentu</h2>
+                <hr style="border-top: 2px solid #007bff; width: 60px; margin: auto;">
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            {% for atendimentu in page_obj %}
+            <div class="col-md-4 ftco-animate fadeInUp ftco-animated">
+                <div class="blog-entry shadow-sm">
+                    <a href="#" class="block-20" style="background-image: url('{{ atendimentu.image.url }}');">
+                        <div class="meta-date text-center p-2">
+                            <span class="day">{{ atendimentu.date|date:"d" }}</span>
+                            <span class="mos">{{ atendimentu.date|date:"F" }}</span>
+                            <span class="yr">{{ atendimentu.date|date:"Y" }}</span>
+                        </div>
+                    </a>
+                    <div class="text bg-white p-4">
+                        <h3 class="heading"><a href="#">{{ atendimentu.name }}</a></h3>
+                        <p>{{ atendimentu.description }}</p>
+                        <div class="d-flex align-items-center mt-4">
+                            <p class="mb-0">
+                                <a href="{% url 'vizitor:atendimentu_detail' atendimentu.id %}" class="btn btn-sm btn-primary">Haree & Download Dokumentu <span class="ion-ios-arrow-round-forward"></span></a>
+                            </p>
+                            <p class="ml-auto mb-0">
+                                <a href="#" class="mr-2">Admin</a>
+                                <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col text-center">
+                <div class="block-27" style="display: inline-block;">
+                    <ul style="list-style: none; padding: 0;">
+                        {% if page_obj.has_previous %}
+                            <li style="display: inline;"><a href="?page=1" style="color: #007bff;">&laquo; First</a></li>
+                            <li style="display: inline;"><a href="?page={{ page_obj.previous_page_number }}" style="color: #007bff;">&lsaquo; Previous</a></li>
+                        {% else %}
+                            <li style="display: inline; color: #ccc;">&laquo; First</li>
+                            <li style="display: inline; color: #ccc;">&lsaquo; Previous</li>
+                        {% endif %}
+
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                                <li style="display: inline; font-weight: bold; color: #007bff;"><span>{{ num }}</span></li>
+                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                <li style="display: inline;"><a href="?page={{ num }}" style="color: #007bff;">{{ num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <li style="display: inline;"><a href="?page={{ page_obj.next_page_number }}" style="color: #007bff;">Next &rsaquo;</a></li>
+                            <li style="display: inline;"><a href="?page={{ page_obj.paginator.num_pages }}" style="color: #007bff;">Last &raquo;</a></li>
+                        {% else %}
+                            <li style="display: inline; color: #ccc;">Next &rsaquo;</li>
+                            <li style="display: inline; color: #ccc;">Last &raquo;</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

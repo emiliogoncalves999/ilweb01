@@ -1,0 +1,126 @@
+{% extends 'visitor/baze.html' %}
+{% block content %}
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <!-- Main Content Section -->
+            <div class="col-md-12">
+                <div class="row align-items-stretch"> <!-- Align items to stretch to same height -->
+                    <!-- Left Column: Missão, Visão Geral, Visão Espesífica -->
+                    <div class="col-md-8 mb-4">
+                        
+                        <div class="topic-section p-4 border rounded shadow-sm">
+                            <h2 class="topic-title">Missao</h2>
+                            <p>
+                               {{perfil.missao}}
+                            </p>
+                        </div>
+
+                        <div class="topic-section p-4 border rounded shadow-sm">
+                            <h2 class="topic-title">Visão Geral</h2>
+                            <p> {{perfil.visao_geral}}</p>
+
+                            <h2 class="topic-title">Visão Espesífica</h2>
+                            <p>
+                                {{perfil.visao_especifica}}
+                               </p>
+                        </div>
+
+                   
+                    </div>
+
+                    <!-- Right Column: Área Geografica -->
+                    <div class="col-md-4 mb-4">
+                        <div class="topic-section p-4 border rounded shadow-sm h-100">
+                            <h2 class="topic-title">Área Geografica</h2>
+                            <div class="location-map text-center">
+                                <img src="{{perfil.area_geografica.url}}" alt="Mapa da Área Geográfica" class="img-fluid rounded">
+                            </div>
+                          
+
+
+                        
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Second Row: Lian nebé usa iha actividade liturgia and Istoria Existencia Paroquia SAJOBRIL -->
+                <div class="row align-items-stretch"> <!-- Align items to stretch to same height -->
+                    <div class="col-md-6 mb-4">
+                        <div class="topic-section p-4 border rounded shadow-sm h-100">
+                            <h2 class="topic-title">Lian nebé usa iha actividade liturgia</h2>
+                            <p>
+                               {{perfil.lian_nebe_usa}}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="topic-section p-4 border rounded shadow-sm h-100">
+                            <h2 class="topic-title">Istoria Existencia Paroquia SAJOBRIL</h2>
+                            <p>
+                               {{perfil.istoria_existencia}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CSS for elegant newspaper-style layout -->
+<style>
+    .topic-section {
+        margin-bottom: 20px;
+        background-color: #ffffff;
+    }
+
+    .topic-title {
+        font-size: 1.75rem;
+        font-family: 'Georgia', serif; /* Elegant font for headings */
+        color: #333;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #007bff; /* Underline the titles */
+        padding-bottom: 10px;
+    }
+
+    .topic-section p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #555;
+    }
+
+    .location-map {
+        margin: 20px 0;
+    }
+
+    .location-map img {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+    /* Add shadow to boxes */
+    .border {
+        border: 1px solid #ddd; /* Light border */
+    }
+
+    .rounded {
+        border-radius: 8px; /* Rounded corners */
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .topic-section {
+            margin-bottom: 15px;
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+{% endblock %}

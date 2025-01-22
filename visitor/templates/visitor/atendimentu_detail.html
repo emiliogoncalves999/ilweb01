@@ -1,0 +1,79 @@
+{% extends 'visitor/baze.html' %}
+{% block content %}
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-2">
+            <div class="col-md-8 text-center heading-section ftco-animate">
+                <h2 class="mb-4">{{ atendimentu.name }}</h2><hr><br>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-md-8 ftco-animate">
+                <div class="blog-entry">
+                    <center>
+                        <img src="{{ atendimentu.image.url }}" style="width: 400px;" alt="{{ atendimentu.name }}" class="img-fluid">
+                        
+                    </center>
+              <div class="text bg-white p-4 mt-3">
+                        <h3>Service: {{ atendimentu.name }} 
+
+
+                            
+                        </h3>
+                        <p>Date: {{ atendimentu.date|date:"F j, Y" }}</p>
+                        <h4>Details</h4>
+                        <p>{{ atendimentu.description }}</p>
+                        <h4>Documents</h4>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>File Name</th>
+                                    <th>Download</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for attachment in attachments %}
+                                <tr>
+                                    <td>{{ attachment.file.name }}</td>
+                                    <td><a href="{{ attachment.file.url }}" download class="btn btn-sm btn-primary">Download</a></td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="2">No documents available.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Sidebar with Other Atendimentos -->
+            <div class="col-md-4 ftco-animate">
+                <div class="sidebar-box">
+                    <h3>Other Atendimentos</h3>
+                    <ul class="list-unstyled">
+                        {% for other in other_atendimentos %}
+                        <li>
+                            <a href="{% url 'vizitor:atendimentu_detail' other.id %}">
+                                <img src="{{ other.image.url }}" alt="{{ other.name }}" class="img-fluid mb-2">
+                                <p>{{ other.name }}</p>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col text-center">
+                <a href="{% url 'vizitor:atendimentu' %}" class="btn btn-primary">Back to Atendimentos</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
