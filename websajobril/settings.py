@@ -26,13 +26,14 @@ SECRET_KEY = 'django-insecure-le9f=uo3n*$4gk3%uohsp55$4ni&oz40h4fnf_)013y3g!6)b4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.189.103','testweb.aictliq.org','sajobril.org','127.0.0.1','sajobril.aictliq.org','sajobril.aictliq.org']
+ALLOWED_HOSTS = ['192.168.189.103','testweb.aictliq.org','sajobril.org','127.0.0.1','sajobril.aictliq.org','sajobril.tl']
 
 
 
 # Application definition
 
 INSTALLED_APPS = [
+
     'jazzmin',
     'ckeditor',
     'django.contrib.admin',
@@ -41,14 +42,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'log',
     'visitor',
     'customdata',
-    'log',
     'perfil',
     'centropastoral' ,
     'comissaun',
-    'planodesenvolvimento'
+    'planodesenvolvimento',
+    'minio_storage'
 ]
+
+
+
 
 
 JAZZMIN_SETTINGS = {
@@ -239,12 +244,29 @@ WSGI_APPLICATION = 'websajobril.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'mpgtl_web_sajobril',
+        'USER': 'aictiliq01',
+        'PASSWORD': 'aictiliq@01',
+        'HOST': 'mysql.s1091.sureserver.com',
+        'PORT': '3308',
+        'OPTIONS': {
+            'autocommit': True,
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
+
 
 
 # Password validation
@@ -278,8 +300,29 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+
+
+
+DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
+MINIO_STORAGE_ENDPOINT = 'aictliqminio-api.aictliq.org'
+MINIO_STORAGE_ACCESS_KEY = 'EWUHEk40Vrni8rBE'
+MINIO_STORAGE_SECRET_KEY = 'NGc2LNoj6PyftZ6167fRAAxNFL2ZwIWZ'
+MINIO_STORAGE_USE_HTTPS = False
+MINIO_STORAGE_MEDIA_OBJECT_METADATA = {"Cache-Control": "max-age=1000"}
+MINIO_STORAGE_MEDIA_BUCKET_NAME = 'web-sajobril'
+MINIO_STORAGE_MEDIA_BACKUP_BUCKET = 'Recycle Bin'
+MINIO_STORAGE_MEDIA_BACKUP_FORMAT = '%c/'
+MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = True
+MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = False
+
+
+
+
+
+
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
