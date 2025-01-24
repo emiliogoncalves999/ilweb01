@@ -8,6 +8,13 @@ from visitor.models import BaseModel
 
 
 class PerfilParoquiaSAJOBRIL(BaseModel):
+    amu = models.TextField("Amu Parokia",null=True,blank=True)
+    naran_parokia = models.TextField("Naran Parokia",null=True,blank=True)
+    sigla_parokia = models.TextField("Sigla Parokia",null=True,blank=True)
+    address = models.TextField("Address Parokia",null=True,blank=True)
+    email = models.TextField("Email Parokia",null=True,blank=True)
+    phone = models.TextField("Phone Parokia",null=True,blank=True)
+    introdusaun = models.TextField("Introdusaun",null=True,blank=True)
     visao_geral = models.TextField("Visão Geral")
     visao_especifica = models.TextField("Visão Específica")
     missao = models.TextField("Missão")

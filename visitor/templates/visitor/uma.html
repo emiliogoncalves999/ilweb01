@@ -6,26 +6,43 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
         <div class="col-md-8 text ftco-animate">
-          <h1 class="mb-12" style="text-shadow: 5px 0px 10px rgba(0,0,0,0.98); color: rgb(211, 202, 155);">  Paroqia sao joao de brito de liquica  - Sajobril</h1>
+          <h1 class="mb-12" style="text-shadow: 5px 0px 10px rgba(0,0,0,0.98); color: rgb(211, 202, 155);">  PAROQUIA SÃO JOÃO DE BRITO LIQUIÇÁ</h1>
           <h3 class="subheading" style="text-shadow: 5px 0px 4px rgba(0, 0, 0, 0.98); color: white;">
             Ad maiora natus sum ,  "Hau moris ba buat bo'ot-liu."
         </h3>
-          <p><a href="#" class="btn btn-secondary px-4 py-3 mt-3">Planu Anual Sajobril</a></p>
+          <p><a href="{% url 'vizitor:planu' %}" class="btn btn-secondary px-4 py-3 mt-3">Planu Anual Sajobril</a></p>
         </div>
-
         <div class="col-md-4 ftco-animate fadeInUp ftco-animated">
           <div class="blog-entry">
-   
-            <div class="text bg-white  p-4">
-              <h3 class="heading"><a href="#"><center><b><h1><span class="flaticon-heart-rate"></span> </h1><br>Konsulta ita bo'ot nia problema moris , imi prontu kopera atu rezolve </b></center></a></h3>
-     
+            <div class="text bg-white p-4">
+              <h3 class="heading">
+                <a href="#">
+                  <center>
+                    <b>
+                      <h1><span class="flaticon-heart-rate"></span></h1>
+                      <br>
+                      Konsulta ita bo'ot nia problema moris , imi prontu kopera atu rezolve
+                    </b>
+                  </center>
+                </a>
+              </h3>
               <div class="d-flex justify-content-center mt-4">
-                  <p class="mb-0"><a href="#" class="btn btn-primary">Kontaktu Agora <span class="ion-ios-arrow-round-forward"></span></a></p>
-             
+                <!-- Button for WhatsApp Chat -->
+                <p class="mb-0">
+                  <a 
+                    href="https://api.whatsapp.com/send?phone=67077654433&text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." 
+                    target="_blank" 
+                    class="btn btn-primary">
+                    Kontaktu Agora <span class="ion-ios-arrow-round-forward"></span>
+                  </a>
+                </p>
+                <!-- Add WhatsApp Share Button -->
+                  
               </div>
             </div>
           </div>
-        </div>																																														
+        </div>
+                                                                                              
 
 
 
@@ -48,7 +65,7 @@
                   <span class="flaticon-doctor"></span>
             </div>
             <div class="media-body p-2 mt-3">
-              <h3 class="heading">Atividade <br> (20)</h3>
+              <h3 class="heading">Atividade <br> ({{total_atividade}})</h3>
               <p>Asesu ba atividade sajobril nian , ne'ebe durante ne'e realiza ona</p>
             </div>
           </div>      
@@ -59,7 +76,7 @@
                   <span class="flaticon-ambulance"></span>
             </div>
             <div class="media-body p-2 mt-3">
-              <h3 class="heading"> Planu sajobril  <br>(0)</h3>
+              <h3 class="heading"> Planu sajobril  <br>({{total_planu}})</h3>
               <p>Asesu ba planu dokumentu planu anual  husi sajobril nian </p>
             </div>
           </div>    
@@ -70,7 +87,7 @@
                   <span class="flaticon-stethoscope"></span>
             </div>
             <div class="media-body p-2 mt-3">
-              <h3 class="heading">Formatu Dokumentu  <br>(7) </h3>
+              <h3 class="heading">Formatu Dokumentu  <br>({{total_atendimentu}}) </h3>
               <p>Download formatu dokumentu sira ligadu ho trata sertidaun batismu , kaben , obitu nst</p>
             </div>
           </div>      
@@ -81,7 +98,7 @@
                   <span class="flaticon-24-hours"></span>
             </div>
             <div class="media-body p-2 mt-3">
-              <h3 class="heading">Eventu & Anunsiu <br>(0)</h3>
+              <h3 class="heading">Eventu & Anunsiu <br>({{total_eventu}})</h3>
               <p>Hare eventu ka anunsiu sira ne'ebe sei realiza husi sajobril </p>
             </div>
           </div>      
@@ -98,12 +115,12 @@
                   <div class="col-md-7 wrap-about py-4 py-md-5 ftco-animate">
             <div class="heading-section mb-5">
                 <div class="pl-md-5 ml-md-5">
-                    <span class="subheading"><b>Amu parokia sao joao de brito </b></span>
-                  <h2 class="mb-4" style="font-size: 28px;">Amu Natalinu verdial de sousa gama</h2>
+                    <span class="subheading"><b>Amu Paroquia São João De Brito Liquiçá </b></span>
+                  <h2 class="mb-4" style="font-size: 28px;">{{perfil.amu}}</h2>
               </div>
             </div>
             <div class="pl-md-5 ml-md-5 mb-5">
-                          <p> <h3>Antecedente</h3> Timor nudar nação nebé maioria população Católica nune’e existe Diocese tolu (Arquidiocese Metropolita de Dili, Diocese Baucau no Diocese Maliana) atu hala’o serviço hodi atende sarani sira iha rai doben ida ne’e. Paróquia São João de Brito Liquiçá (PSJBL) nebé existe iha Município Liquiçá halo parte ba Diocese Sagrado Coração de Jesus Maliana (DSCJM), Paróquia Liquiçá subordena Estação Missionária rua; Bazartete no Darulete, centro pastoral 17 no Bairo 148...<a href="#" class="btn btn-sm btn-primary">Hare Detallu <span class="ion-ios-arrow-round-forward"></span></a> 
+                          <p> <h3>Antecedente</h3> {{perfil.istoria_existencia|truncatewords:80|safe}} ...<a href="{% url 'vizitor:perfilsazobril' %}" class="btn btn-sm btn-primary">Hare Detallu <span class="ion-ios-arrow-round-forward"></span></a> 
                               </p>										
                           <div class="row mt-5 pt-2">
                               <div class="col-lg-6">
@@ -111,7 +128,11 @@
                                       <div class="icon mt-2 mr-3 d-flex justify-content-center align-items-center"><span class="flaticon-first-aid-kit"></span></div>
                                       <div class="text">
                                           <h3>Visão Geral</h3>
-                                          <p><a href="#" class="btn btn-sm btn-primary">Hare Detallu <span class="ion-ios-arrow-round-forward"></span></a></p>
+                                          <p>
+                                            {{perfil.visao_geral|truncatewords:30|safe }} ...
+
+                                            <a href="{% url 'vizitor:perfilsazobril' %}" class="btn btn-sm btn-primary">Hare Detallu <span class="ion-ios-arrow-round-forward"></span></a>
+                                          </p>
                                       </div>
                                   </div>
                               </div>
@@ -120,28 +141,36 @@
                                       <div class="icon mt-2 mr-3 d-flex justify-content-center align-items-center"><span class="flaticon-dropper"></span></div>
                                       <div class="text">
                                           <h3>Visão Específica</h3>
-                                          <p><a href="#" class="btn btn-sm btn-primary">Hare Detallu <span class="ion-ios-arrow-round-forward"></span></a></p>
+                                          <p>
+                                            {{perfil.visao_especifica|truncatewords:30|safe }} ...
+
+                                            <a href="{% url 'vizitor:perfilsazobril' %}" class="btn btn-sm btn-primary">Hare Detallu <span class="ion-ios-arrow-round-forward"></span></a></p>
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-lg-6">
+                              <div class="col-lg-12">
                                   <div class="services-2 d-flex">
                                       <div class="icon mt-2 mr-3 d-flex justify-content-center align-items-center"><span class="flaticon-experiment-results"></span></div>
                                       <div class="text">
                                           <h3>Missão</h3>
-                                          <p><a href="#" class="btn btn-sm btn-primary">Hare Detallu <span class="ion-ios-arrow-round-forward"></span></a></p>
+                                          <p>
+                                            {{perfil.missao|truncatewords:30|safe }} ...
+                                            <a href="{% url 'vizitor:perfilsazobril' %}" class="btn btn-sm btn-primary">Hare Detallu <span class="ion-ios-arrow-round-forward"></span></a></p>
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-lg-6">
+                              <!-- <div class="col-lg-6">
                                   <div class="services-2 d-flex">
                                       <div class="icon mt-2 mr-3 d-flex justify-content-center align-items-center"><span class="flaticon-heart-rate"></span></div>
                                       <div class="text">
                                           <h3>Objectivo </h3>
-                                          <p><a href="#" class="btn btn-sm btn-primary">Hare Detallu <span class="ion-ios-arrow-round-forward"></span></a></p>
+                                          <p>
+                                            {{perfil.visao_geral|truncatewords:20|safe }} ...
+                                            <a href="#" class="btn btn-sm btn-primary">Hare Detallu <span class="ion-ios-arrow-round-forward"></span></a>
+                                          </p>
                                       </div>
                                   </div>
-                              </div>
+                              </div> -->
                           </div>
                       </div>
                   </div>
@@ -159,7 +188,11 @@
                       <p></p>
                   </div>
                   <div class="col-md-3 d-flex align-items-center">
-                      <p class="mb-0"><a href="#" class="btn btn-secondary px-4 py-3"> Causeling Gratuita</a></p>
+                      <p class="mb-0">
+                 
+                        <a href="https://api.whatsapp.com/send?phone=67077654433&text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." class="btn btn-secondary px-4 py-3"> Causeling Gratuita</a>
+                      
+                      </p>
                   </div>
               </div>
           </div>

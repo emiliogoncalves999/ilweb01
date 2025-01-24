@@ -40,17 +40,34 @@ from visitor.models import AnnualPlan, Atendimentu, Atividade, Aunsiu, Eventu, M
 
 
 
-def index(request):
+def index(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
+
 
 
     atividades = Atividade.objects.all().order_by('id')
+
+    total_atividade = Atividade.objects.all().count()
+    total_planu = Planu.objects.all().count()
+    total_atendimentu = Atendimentu.objects.all().count()
+    total_eventu = Eventu.objects.all().count()
+
+
+
     paginator = Paginator(atividades, 20)  # Show 20 activities per page
 
     page_number = request.GET.get('page')  # Get the page number from the URL
     page_obj = paginator.get_page(page_number)  # Get the activities for that page
 
 
+
+
     context = {
+        'total_atividade' : total_atividade,
+        'perfil' : perfil,
+        'total_planu' : total_planu,
+        'total_atendimentu' : total_atendimentu,
+        'total_eventu' : total_eventu,
         'page_obj': page_obj,
         'pajinaatividade': 'active',
     }
@@ -58,7 +75,9 @@ def index(request):
 
 
 
-def atividade(request):
+def atividade(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
+
     atividades = Atividade.objects.all().order_by('id')
     paginator = Paginator(atividades, 20)  # Show 20 activities per page
 
@@ -66,6 +85,7 @@ def atividade(request):
     page_obj = paginator.get_page(page_number)  # Get the activities for that page
 
     context = {
+        'perfil' : perfil,
         'page_obj': page_obj,
         'pajinaatividade': 'active',
    # Pass the page object to the template
@@ -74,9 +94,11 @@ def atividade(request):
 
 
 def atividade_detail(request, id):
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     latest_activities = Atividade.objects.exclude(id=id).order_by('-date')[:5]  # Get the latest 5 activities excluding the current one
     atividade = get_object_or_404(Atividade, pk=int(id))  # Fetch the Atividade instance by its primary key
     context = {
+        'perfil' : perfil,
         'latest_activities': latest_activities,
         'atividade': atividade,  # Pass the Atividade object to the template
     }
@@ -85,15 +107,18 @@ def atividade_detail(request, id):
 
 
 
-def konaba(request):
+def konaba(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     context = {
+        'perfil' : perfil,
         'pajinakonaba' : 'active',
     }
     return render(request,'visitor/konaba.html', context)
 
 
 
-def misa(request):
+def misa(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     # Fetch and paginate Masses (Missa)
     missa_list = Missa.objects.all().order_by('id')
     missa_paginator = Paginator(missa_list, 20)  # Show 20 masses per page
@@ -107,6 +132,7 @@ def misa(request):
     event_page_obj = event_paginator.get_page(event_page_number)  # Get the events for that page
 
     context = {
+        'perfil' : perfil,
         'pajinamisa': 'active',
         'misa_page_obj': misa_page_obj,  # Pass the misa page object to the template
         'event_page_obj': event_page_obj,  # Pass the event page object to the template
@@ -115,9 +141,11 @@ def misa(request):
     return render(request, 'visitor/misa.html', context)
 
 def misa_detail(request, id):
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     latest_misa = Missa.objects.exclude(id=id).order_by('-id')[:5]  # Get the latest 5 activities excluding the current one
     misa = get_object_or_404(Missa, pk=int(id))  # Fetch the Atividade instance by its primary key
     context = {
+        'perfil' : perfil,
         'latest_misa': latest_misa,
         'misa': misa,  # Pass the Atividade object to the template
     }
@@ -127,14 +155,17 @@ def misa_detail(request, id):
 
     
 
-def eventu(request):
+def eventu(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     context = {
+        'perfil' : perfil,
         'pajinaeventu' : 'active',
     }
     return render(request,'visitor/eventu.html', context)
 
 
-def anunsiu(request):
+def anunsiu(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     # Fetch and paginate Announcements
     announcement_list = Aunsiu.objects.all().order_by('-date_published')
     paginator = Paginator(announcement_list, 10)  # Show 10 announcements per page
@@ -142,6 +173,7 @@ def anunsiu(request):
     page_obj = paginator.get_page(page_number)  # Get the announcements for that page
 
     context = {
+        'perfil' : perfil,
         'pajinaanunsiu': 'active',
         'page_obj': page_obj,  # Pass the page object to the template
     }
@@ -151,9 +183,11 @@ def anunsiu(request):
 
 
 def anunsiu_detail(request, id):
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     latest_anunsiu = Aunsiu.objects.exclude(id=id).order_by('-id')[:5]  # Get the latest 5 activities excluding the current one
     misa = get_object_or_404(Aunsiu, pk=int(id))  # Fetch the Atividade instance by its primary key
     context = {
+        'perfil' : perfil,
         'latest_misa': latest_anunsiu,
         'misa': misa,  # Pass the Atividade object to the template
     }
@@ -162,7 +196,8 @@ def anunsiu_detail(request, id):
 
 
 
-def atendimentu(request):
+def atendimentu(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     # Fetch and paginate Atendimentos
     atendimento_list = Atendimentu.objects.all().order_by('-date')
     paginator = Paginator(atendimento_list, 6)  # Show 6 atendimentos per page
@@ -170,6 +205,7 @@ def atendimentu(request):
     page_obj = paginator.get_page(page_number)  # Get the atendimentos for that page
 
     context = {
+        'perfil' : perfil,
         'pajinaatendimentu': 'active',
         'page_obj': page_obj,  # Pass the page object to the template
     }
@@ -178,11 +214,13 @@ def atendimentu(request):
 
 
 def atendimentu_detail(request, id):
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     atendimentu = get_object_or_404(Atendimentu, pk=int(id))
     attachments = atendimentu.attachments.all()  # Get all related attachments
     other_atendimentos = Atendimentu.objects.exclude(pk=int(id)).order_by('-date')[:5]  # Get 5 other atendimentos
 
     context = {
+        'perfil' : perfil,
         'atendimentu': atendimentu,
         'attachments': attachments,
         'other_atendimentos': other_atendimentos,
@@ -191,7 +229,8 @@ def atendimentu_detail(request, id):
     return render(request, 'visitor/atendimentu_detail.html', context)
 
 
-def planu(request):
+def planu(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     annual_plans_list = AnnualPlan.objects.all()
     paginator = Paginator(annual_plans_list, 3)  # Show 3 plans per page
 
@@ -199,6 +238,7 @@ def planu(request):
     page_obj = paginator.get_page(page_number)
 
     context = {
+        'perfil' : perfil,
         'pajinaplanu': 'active',
         'page_obj': page_obj,
     }
@@ -207,11 +247,12 @@ def planu(request):
 
 
 def planu_detail(request, id):
- 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     annual_plan = get_object_or_404(AnnualPlan, pk=int(id))
     other_plans = AnnualPlan.objects.exclude(pk=int(id))[:5]  # Fetch other plans, limiting to 5
 
     context = {
+        'perfil' : perfil,
         'annual_plan': annual_plan,
         'other_plans': other_plans,
     }
@@ -219,18 +260,22 @@ def planu_detail(request, id):
 
 
 
-def detallu(request):
+def detallu(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     context = {
+        'perfil' : perfil,
         'pajinadetallu' : 'active',
     }
     return render(request,'visitor/detallu.html', context)
 
 
-def perfilsazobril(request):
+def perfilsazobril(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
 
     perfil = PerfilParoquiaSAJOBRIL.objects.all().last()
 
     context = {
+
         'perfil' : perfil,
         'pajinadetallu' : 'active',
     }
@@ -238,7 +283,8 @@ def perfilsazobril(request):
 
 
 
-def recursohumanos(request):
+def recursohumanos(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     profesor = ProfessorReligiaoCatolico.objects.all()
     padre = PadreMadre.objects.filter(tipo='padre')
     madre = PadreMadre.objects.filter(tipo='madre')
@@ -260,12 +306,14 @@ def recursohumanos(request):
 
 
 
-def congregacao(request):
+def congregacao(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     congregacao = Congregacao.objects.all()
    
 
  
     context = {
+        'perfil' : perfil,
         'congregacao' : congregacao,
       
         'pajinadetallu' : 'active',
@@ -273,12 +321,14 @@ def congregacao(request):
     return render(request,'visitor/congregacao.html', context)
 
 
-def eskolacatolico(request):
+def eskolacatolico(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     eskolacatolico = EskolaCatolico.objects.all()
    
 
  
     context = {
+        'perfil' : perfil,
         'eskolacatolico' : eskolacatolico,
       
         'pajinadetallu' : 'active',
@@ -286,24 +336,28 @@ def eskolacatolico(request):
     return render(request,'visitor/eskolacatolico.html', context)
 
 
-def grupucategorial(request):
+def grupucategorial(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     grupucategorial = GrupuCategorial.objects.all()
    
 
  
     context = {
+        'perfil' : perfil,
         'grupucategorial' : grupucategorial,
       
         'pajinadetallu' : 'active',
     }
     return render(request,'visitor/grupucategorial.html', context)
 
-def centropastoral(request):
+def centropastoral(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     centropastoral = CentroPastoral.objects.all()
    
 
  
     context = {
+        'perfil' : perfil,
         'centropastoral' : centropastoral,
       
         'pajinadetallu' : 'active',
@@ -318,7 +372,8 @@ def centropastoral(request):
 from django.shortcuts import render
 from comissaun.models import Comissaun, PlanuComisaun
 
-def comissaun(request):
+def comissaun(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     # Get all Comissaun and related PlanuComisaun
     comissoes = Comissaun.objects.all()
     
@@ -326,16 +381,19 @@ def comissaun(request):
     years = PlanuComisaun.objects.values_list('year', flat=True).distinct()
     
     context = {
+        'perfil' : perfil,
         'comissoes': comissoes,
         'years': years,
     }
     return render(request, 'visitor/comissaun.html', context)
 
-def planudezenvolvimentu(request):
+def planudezenvolvimentu(request): 
+    perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     years = DettaluPlano.objects.values_list('year', flat=True).distinct().order_by('year')
     comissoes = Planu.objects.prefetch_related('dettaluplano_set').all()
 
     context = {
+        'perfil' : perfil,
         'years': years,
         'comissoes': comissoes,
     }

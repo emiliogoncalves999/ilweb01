@@ -5,11 +5,22 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from customdata.models import Author
 
+
+class ActiveManager(models.Manager):
+    def get_queryset(self):
+        # Only return objects where is_deleted is False
+        return super().get_queryset().filter(is_deleted=False)
+
 class BaseModel(models.Model):
     user_created = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Kria husi")
     is_deleted = models.BooleanField(default=False, verbose_name="Apaga")
     date_created = models.DateTimeField(auto_now_add=True, verbose_name="Data kria")
     date_modified = models.DateTimeField(auto_now=True, verbose_name="Data muda")
+
+    # Custom manager to filter out deleted objects
+    objects = ActiveManager()
+    # Optional: Manager to include all objects (deleted and non-deleted)
+    all_objects = models.Manager()
 
     class Meta:
         abstract = True
@@ -23,6 +34,8 @@ class BaseModel(models.Model):
 
     def save(self, *args, **kwargs):
         super(BaseModel, self).save(*args, **kwargs)
+
+
 
 class Noticia(BaseModel):
     title = models.CharField(max_length=200, verbose_name="Títulu")
