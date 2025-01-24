@@ -1,6 +1,8 @@
 from django.db import models
 
-class Comissaun(models.Model):
+from visitor.models import BaseModel
+
+class Comissaun(BaseModel):
     """
     Model to represent Comissaun.
     Includes fields for name, description, logo, and contact information.
@@ -18,7 +20,7 @@ class Comissaun(models.Model):
         verbose_name_plural = "Comissões"
 
 
-class PlanuComisaun(models.Model):
+class PlanuComisaun(BaseModel):
     """
     Model to represent PlanuComisaun (plans related to a Comissaun).
     Each plan has a title, description, file, and year.

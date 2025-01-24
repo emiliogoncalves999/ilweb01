@@ -36,6 +36,8 @@ class PerfilParoquiaSAJOBRIL(BaseModel):
         verbose_name = "Perfil Paroquial SAJOBRIL"
         verbose_name_plural = "Perfis Paroquiais SAJOBRIL"
 
+        
+
 class Congregacao(BaseModel):
     nome = models.CharField("Nome da Congregação", max_length=255)
     deskrisau = models.TextField("Deskrisau")

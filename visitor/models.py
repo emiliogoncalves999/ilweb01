@@ -11,11 +11,14 @@ class ActiveManager(models.Manager):
         # Only return objects where is_deleted is False
         return super().get_queryset().filter(is_deleted=False)
 
+
+
+
 class BaseModel(models.Model):
     user_created = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Kria husi")
-    is_deleted = models.BooleanField(default=False, verbose_name="Apaga")
-    date_created = models.DateTimeField(auto_now_add=True, verbose_name="Data kria")
-    date_modified = models.DateTimeField(auto_now=True, verbose_name="Data muda")
+    is_deleted = models.BooleanField(default=False, verbose_name="Apaga",null=True, blank=True)
+    date_created = models.DateTimeField(auto_now_add=True, verbose_name="Data kria",null=True, blank=True)
+    date_modified = models.DateTimeField(auto_now=True, verbose_name="Data muda",null=True, blank=True)
 
     # Custom manager to filter out deleted objects
     objects = ActiveManager()
@@ -37,6 +40,9 @@ class BaseModel(models.Model):
 
 
 
+
+
+
 class Noticia(BaseModel):
     title = models.CharField(max_length=200, verbose_name="Títulu")
     content = RichTextField(verbose_name="Konteudu")
@@ -52,6 +58,9 @@ class Noticia(BaseModel):
     class Meta:
         verbose_name = "Notísia"
         verbose_name_plural = "Notísias"
+
+
+        
 
 class Atividade(BaseModel):
     name = models.CharField(max_length=200, verbose_name="Titulu")
@@ -70,6 +79,9 @@ class Atividade(BaseModel):
         verbose_name = "Atividade"
         verbose_name_plural = "Atividades"
 
+
+
+
 class Eventu(BaseModel):
     name = models.CharField(max_length=200, verbose_name="Naran")
     location = models.CharField(max_length=200, verbose_name="Lokalizasaun")
@@ -85,6 +97,11 @@ class Eventu(BaseModel):
     class Meta:
         verbose_name = "Eventu"
         verbose_name_plural = "Eventus"
+
+
+
+
+
 
 class Missa(BaseModel):
     title = models.CharField(max_length=200, verbose_name="Títulu")
@@ -104,6 +121,11 @@ class Missa(BaseModel):
         verbose_name = "Missa"
         verbose_name_plural = "Missas"
 
+
+
+
+
+
 class Aunsiu(BaseModel):
     title = models.CharField(max_length=200, verbose_name="Títulu")
     message = models.TextField(verbose_name="Mensajen")
@@ -120,6 +142,9 @@ class Aunsiu(BaseModel):
         verbose_name = "Anúnsio"
         verbose_name_plural = "Anúnsios"
 
+
+
+
 class Atendimentu(BaseModel):
     name = models.CharField(max_length=200, verbose_name="Titulu")
     description = models.TextField(verbose_name="Requerementu", null=True,blank=True)
@@ -135,6 +160,9 @@ class Atendimentu(BaseModel):
     class Meta:
         verbose_name = "Atendimentu"
         verbose_name_plural = "Atendimentos"
+
+
+
 
 
 

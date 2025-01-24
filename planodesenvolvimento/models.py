@@ -1,8 +1,10 @@
 from django.db import models
 
-from django.db import models
 
-class Planu(models.Model):
+
+from visitor.models import BaseModel
+
+class Planu(BaseModel):
     """
     Model to represent Comissaun.
     Includes fields for name, description, logo, and contact information.
@@ -19,7 +21,7 @@ class Planu(models.Model):
         verbose_name_plural = "Palnu Dezenvolvimentu"
 
 
-class DettaluPlano(models.Model):
+class DettaluPlano(BaseModel):
     """
     Model to represent PlanuComisaun (plans related to a Comissaun).
     Each plan has a title, description, file, year, and a relation to Planu.

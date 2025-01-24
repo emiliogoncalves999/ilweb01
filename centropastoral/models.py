@@ -1,9 +1,11 @@
 from django.db import models
 
+from visitor.models import BaseModel
 
 
 
-class CentroPastoral(models.Model):
+
+class CentroPastoral(BaseModel):
     name = models.CharField(max_length=255)
     logo = models.ImageField(upload_to='centro_pastoral_logos/')  # Path to store uploaded logos
     historia_existencia = models.TextField()
