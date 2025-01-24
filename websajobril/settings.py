@@ -28,7 +28,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.189.103','testweb.aictliq.org','sajobril.org','127.0.0.1','sajobril.aictliq.org','sajobril.tl']
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://sajobril.org',
+    'https://sajobril.tl', 
+    ]
 
+
+# CORS configuration
+CORS_ALLOWED_ORIGINS = [
+    "http://sajobril.org",
+    "https://sajobril.tl",
+]
 
 # Application definition
 
@@ -210,6 +220,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+
+
+
 
 ROOT_URLCONF = 'websajobril.urls'
 
