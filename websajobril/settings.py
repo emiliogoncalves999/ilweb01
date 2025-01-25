@@ -52,13 +52,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'log',
     'visitor',
     'customdata',
     'perfil',
     'centropastoral' ,
     'comissaun',
     'planodesenvolvimento',
+    'log',
     'minio_storage'
 ]
 
@@ -212,6 +212,7 @@ JAZZMIN_UI_TWEAKS = {
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -222,7 +223,27 @@ MIDDLEWARE = [
 ]
 
 
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://sajobril.org",
+    "http://sajobril.org",
+    "https://sajobril.tl",
+    "http://sajobril.tl",
+]
 
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    "content-type",
+    "authorization",
+]
+
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+]
 
 
 
@@ -259,28 +280,28 @@ WSGI_APPLICATION = 'websajobril.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'mpgtl_web_sajobril',
-        'USER': 'aictiliq01',
-        'PASSWORD': 'aictiliq@01',
-        'HOST': 'mysql.s1091.sureserver.com',
-        'PORT': '3308',
-        'OPTIONS': {
-            'autocommit': True,
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mysql.connector.django',
+#         'NAME': 'mpgtl_web_sajobril',
+#         'USER': 'aictiliq01',
+#         'PASSWORD': 'aictiliq@01',
+#         'HOST': 'mysql.s1091.sureserver.com',
+#         'PORT': '3308',
+#         'OPTIONS': {
+#             'autocommit': True,
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+#         },
+#     }
+# }
 
 
 
@@ -319,25 +340,27 @@ USE_TZ = True
 
 
 
-DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
-MINIO_STORAGE_ENDPOINT = 'aictliqminio-api.aictliq.org'
-MINIO_STORAGE_ACCESS_KEY = 'EWUHEk40Vrni8rBE'
-MINIO_STORAGE_SECRET_KEY = 'NGc2LNoj6PyftZ6167fRAAxNFL2ZwIWZ'
-MINIO_STORAGE_USE_HTTPS = False
-MINIO_STORAGE_MEDIA_OBJECT_METADATA = {"Cache-Control": "max-age=1000"}
-MINIO_STORAGE_MEDIA_BUCKET_NAME = 'web-sajobril'
-MINIO_STORAGE_MEDIA_BACKUP_BUCKET = 'Recycle Bin'
-MINIO_STORAGE_MEDIA_BACKUP_FORMAT = '%c/'
-MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = True
-MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = False
+# DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
+# MINIO_STORAGE_ENDPOINT = 'aictliqminio-api.aictliq.org'
+# MINIO_STORAGE_ACCESS_KEY = 'EWUHEk40Vrni8rBE'
+# MINIO_STORAGE_SECRET_KEY = 'NGc2LNoj6PyftZ6167fRAAxNFL2ZwIWZ'
+# MINIO_STORAGE_USE_HTTPS = False
+# MINIO_STORAGE_MEDIA_OBJECT_METADATA = {"Cache-Control": "max-age=1000"}
+# MINIO_STORAGE_MEDIA_BUCKET_NAME = 'web-sajobril'
+# MINIO_STORAGE_MEDIA_BACKUP_BUCKET = 'Recycle Bin'
+# MINIO_STORAGE_MEDIA_BACKUP_FORMAT = '%c/'
+# MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = True
+# MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = False
 
 
 
 
 
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

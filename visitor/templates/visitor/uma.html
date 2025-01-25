@@ -56,57 +56,78 @@
 
   </section>
 
+
+
   <section class="ftco-services ftco-no-pb">
-          <div class="container">
-              <div class="row no-gutters">
+    <div class="container">
+      <div class="row no-gutters">
+        <!-- Padre -->
         <div class="col-md-3 d-flex services align-self-stretch p-4 ftco-animate">
           <div class="media block-6 d-block text-center">
             <div class="icon d-flex justify-content-center align-items-center">
-                  <span class="flaticon-doctor"></span>
+              <span class="icon-user"></span> <!-- Ikon untuk Padre -->
             </div>
             <div class="media-body p-2 mt-3">
-              <h3 class="heading">Atividade <br> ({{total_atividade}})</h3>
-              <p>Asesu ba atividade sajobril nian , ne'ebe durante ne'e realiza ona</p>
+              <center>
+                <h3 class="heading">Total Padre <br> ({{totpadre}})</h3>
+                <p>Hare Dados, Padre no madre Liquica oan </p>
+               </center>
+
             </div>
-          </div>      
+          </div>
         </div>
+        <!-- Madre -->
         <div class="col-md-3 d-flex services align-self-stretch p-4 ftco-animate">
           <div class="media block-6 d-block text-center">
             <div class="icon d-flex justify-content-center align-items-center">
-                  <span class="flaticon-ambulance"></span>
+              <span class="icon-user"></span> <!-- Ikon untuk Madre -->
             </div>
             <div class="media-body p-2 mt-3">
-              <h3 class="heading"> Planu sajobril  <br>({{total_planu}})</h3>
-              <p>Asesu ba planu dokumentu planu anual  husi sajobril nian </p>
+              <center>
+              <h3 class="heading">Total Madre <br>({{totmadre}})</h3>
+              <p>Hare Dados, Padre no madre Liquica oan</p>
+              <a class="btn btn-primary" href="{% url 'vizitor:recursohumanos' %}">klik iha ne'e</a>
+              </center>
             </div>
-          </div>    
+          </div>
         </div>
+        <!-- Eis Seminarista -->
         <div class="col-md-3 d-flex services align-self-stretch p-4 ftco-animate">
           <div class="media block-6 d-block text-center">
             <div class="icon d-flex justify-content-center align-items-center">
-                  <span class="flaticon-stethoscope"></span>
+              <span class="icon-history"></span> <!-- Ikon untuk Historical -->
             </div>
             <div class="media-body p-2 mt-3">
-              <h3 class="heading">Formatu Dokumentu  <br>({{total_atendimentu}}) </h3>
-              <p>Download formatu dokumentu sira ligadu ho trata sertidaun batismu , kaben , obitu nst</p>
+              <center>
+              <h3 class="heading">Total Eis Seminarista <br>({{totseminarista}})</h3>
+              <p>Hare Dados, Eis Seminarista Liquica oan</p>
+              <a class="btn btn-primary" href="{% url 'vizitor:recursohumanos' %}">klik iha ne'e</a>
+              <center>
             </div>
-          </div>      
+          </div>
         </div>
+        <!-- Professores -->
         <div class="col-md-3 d-flex services align-self-stretch p-4 ftco-animate">
           <div class="media block-6 d-block text-center">
             <div class="icon d-flex justify-content-center align-items-center">
-                  <span class="flaticon-24-hours"></span>
+              <span class="icon-book"></span> <!-- Ikon untuk Guru -->
             </div>
             <div class="media-body p-2 mt-3">
-              <h3 class="heading">Eventu & Anunsiu <br>({{total_eventu}})</h3>
-              <p>Hare eventu ka anunsiu sira ne'ebe sei realiza husi sajobril </p>
+              <center>
+
+              <h3 class="heading">Total Professores <br>({{totprofessores}})</h3>
+              <p>Hare Dados, Professores Liquica oan</p>
+              <a class="btn btn-primary" href="{% url 'vizitor:recursohumanos' %}">klik iha ne'e</a>
+            </center>
             </div>
-          </div>      
+          </div>
         </div>
       </div>
-          </div>
-      </section>
-      
+    </div>
+  </section>
+
+
+  
       <section class="ftco-section ftco-no-pt ftc-no-pb">
           <div class="container">
               <div class="row no-gutters">
@@ -177,27 +198,74 @@
               </div>
           </div>
       </section>
+      <br>      
       
-      <section class="ftco-intro" style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
-          <div class="overlay"></div>
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-9">
-                      <h2>Colsulta ita nia problema ho amu sira </h2>
-                      <p class="mb-0">Kuidadu imi nia privasidade , solusiona imi nia problema</p>
-                      <p></p>
-                  </div>
-                  <div class="col-md-3 d-flex align-items-center">
-                      <p class="mb-0">
-                 
-                        <a href="https://api.whatsapp.com/send?phone=67077654433&text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." class="btn btn-secondary px-4 py-3"> Causeling Gratuita</a>
-                      
-                      </p>
-                  </div>
-              </div>
-          </div>
-      </section>
 
+  
+
+      <section class="ftco-services ftco-no-pb">
+      <div class="container">
+      <div class="row no-gutters">
+
+
+        
+      <div class="col-md-3 d-flex services align-self-stretch p-4 ftco-animate">
+        <div class="media block-6 d-block text-center">
+          <div class="icon d-flex justify-content-center align-items-center">
+                <span class="flaticon-doctor"></span>
+          </div>
+          <div class="media-body p-2 mt-3">
+            <h3 class="heading">Atividade <br> ({{total_atividade}})</h3>
+            <p>Asesu ba atividade sajobril nian , ne'ebe durante ne'e realiza ona</p>
+            <a class="btn btn-primary" href="{% url 'vizitor:atendimentu' %}">klik iha ne'e</a>
+             
+          </div>
+        </div>      
+      </div>
+      <div class="col-md-3 d-flex services align-self-stretch p-4 ftco-animate">
+        <div class="media block-6 d-block text-center">
+          <div class="icon d-flex justify-content-center align-items-center">
+                <span class="flaticon-ambulance"></span>
+          </div>
+          <div class="media-body p-2 mt-3">
+            <h3 class="heading"> Planu sajobril  <br>({{total_planu}})</h3>
+            <p>Asesu ba planu dokumentu planu anual  husi sajobril nian </p>
+            <a class="btn btn-primary" href="{% url 'vizitor:atendimentu' %}">klik iha ne'e</a>
+             
+          </div>
+        </div>    
+      </div>
+      <div class="col-md-3 d-flex services align-self-stretch p-4 ftco-animate">
+        <div class="media block-6 d-block text-center">
+          <div class="icon d-flex justify-content-center align-items-center">
+                <span class="flaticon-stethoscope"></span>
+          </div>
+          <div class="media-body p-2 mt-3">
+            <h3 class="heading">Formatu Dokumentu  <br>({{total_atendimentu}}) </h3>
+            <p>Download formatu dokumentu sira ligadu ho trata sertidaun batismu , kaben , obitu nst</p>
+            <a class="btn btn-primary" href="{% url 'vizitor:atendimentu' %}">klik iha ne'e</a>
+             
+          </div>
+        </div>      
+      </div>
+      <div class="col-md-3 d-flex services align-self-stretch p-4 ftco-animate">
+        <div class="media block-6 d-block text-center">
+          <div class="icon d-flex justify-content-center align-items-center">
+                <span class="flaticon-24-hours"></span>
+          </div>
+          <div class="media-body p-2 mt-3">
+            <h3 class="heading">Eventu & Anunsiu <br>({{total_eventu}})</h3>
+            <p>Hare eventu ka anunsiu sira ne'ebe sei realiza husi sajobril </p>
+            <a class="btn btn-primary" href="{% url 'vizitor:atendimentu' %}">klik iha ne'e</a>
+          </div>
+        </div>      
+      </div>
+      </div>
+      </div>
+
+ 
+    </section>
+ 
 
   <section class="ftco-section">
           <div class="container">

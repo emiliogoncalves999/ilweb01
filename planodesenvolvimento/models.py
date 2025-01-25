@@ -4,6 +4,8 @@ from django.db import models
 
 from visitor.models import BaseModel
 
+
+
 class Planu(BaseModel):
     """
     Model to represent Comissaun.
@@ -17,8 +19,8 @@ class Planu(BaseModel):
         return self.nome
 
     class Meta:
-        verbose_name = "Palnu Dezenvolvimentu"
-        verbose_name_plural = "Palnu Dezenvolvimentu"
+        verbose_name = "Planu Dezenvolvimentu"
+        verbose_name_plural = "Planu Dezenvolvimentu"
 
 
 class DettaluPlano(BaseModel):

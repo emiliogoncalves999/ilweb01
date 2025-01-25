@@ -58,7 +58,7 @@ class GrupuCategorialAdmin(admin.ModelAdmin):
 
 class ProfessorReligiaoCatolicoAdmin(admin.ModelAdmin):
     exclude = ('user_created', 'is_deleted', 'date_created', 'date_modified')
-    list_display = ('nome', 'data_nascimento', 'display_foto')
+    list_display = ('nome', 'fatinserviço','estatuto', 'display_foto')
 
     def display_foto(self, obj):
         if obj.foto:
@@ -68,7 +68,7 @@ class ProfessorReligiaoCatolicoAdmin(admin.ModelAdmin):
 
 class PadreMadreAdmin(admin.ModelAdmin):
     exclude = ('user_created', 'is_deleted', 'date_created', 'date_modified')
-    list_display = ('nome', 'tipo', 'data_nascimento', 'display_foto')
+    list_display = ('nome', 'tipo', 'fatinnodataordenacao','fatinservico', 'descricao','display_foto')
 
     def display_foto(self, obj):
         if obj.foto:
@@ -78,7 +78,7 @@ class PadreMadreAdmin(admin.ModelAdmin):
 
 class EisSeminaristaExReligiosoAdmin(admin.ModelAdmin):
     exclude = ('user_created', 'is_deleted', 'date_created', 'date_modified')
-    list_display = ('nome', 'data_nascimento', 'display_foto')
+    list_display = ('nome', 'estadoeivil','contacto','descricao', 'display_foto')
 
     def display_foto(self, obj):
         if obj.foto:

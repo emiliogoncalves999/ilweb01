@@ -44,6 +44,12 @@ def index(request):
     perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
 
 
+    totprof = ProfessorReligiaoCatolico.objects.all().count()
+    totmadre = ProfessorReligiaoCatolico.objects.all().count()
+    totpadre = PadreMadre.objects.filter(tipo='padre').count()
+    totmadre = PadreMadre.objects.filter(tipo='madre').count()
+    totseminarista = EisSeminaristaExReligioso.objects.all().count()
+
 
     atividades = Atividade.objects.all().order_by('id')
 
@@ -69,6 +75,11 @@ def index(request):
         'total_atendimentu' : total_atendimentu,
         'total_eventu' : total_eventu,
         'page_obj': page_obj,
+        'totprof' : totprof,
+        'totpadre' : totpadre,
+        'totmadre' : totmadre,
+        'totseminarista' : totseminarista,
+
         'pajinaatividade': 'active',
     }
     return render(request,'visitor/uma.html', context)

@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Comissões e Planos</h2>
+                <h2>Plano Desenvolvimento Pastoral Uma Labadain no Plano Asaun Annual</h2>
 
                 <!-- Buttons for each year -->
                 <center>
@@ -26,7 +26,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Comissão</th>
+                                <th>Titulu</th>
                                 <th>Plano</th>
                                 <th>Descrição</th>
                                 <th>Download</th>
@@ -34,7 +34,7 @@
                         </thead>
                         <tbody>
                             {% for comissao in comissoes %}
-                                {% for planu in comissao.dettaluplano_set.all %}
+                                {% for planu in comissao.planus.all %}
                                     {% if planu.year == year %}
                                     <tr>
                                         <td>{{ comissao.nome }}</td>

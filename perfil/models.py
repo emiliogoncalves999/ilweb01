@@ -5,23 +5,24 @@ from django.contrib.auth.models import User
 
 from visitor.models import BaseModel
 
+from ckeditor.fields import RichTextField
 
 
 class PerfilParoquiaSAJOBRIL(BaseModel):
-    amu = models.TextField("Amu Parokia",null=True,blank=True)
-    naran_parokia = models.TextField("Naran Parokia",null=True,blank=True)
-    sigla_parokia = models.TextField("Sigla Parokia",null=True,blank=True)
-    address = models.TextField("Address Parokia",null=True,blank=True)
-    email = models.TextField("Email Parokia",null=True,blank=True)
-    phone = models.TextField("Phone Parokia",null=True,blank=True)
-    introdusaun = models.TextField("Introdusaun",null=True,blank=True)
-    visao_geral = models.TextField("Visão Geral")
-    visao_especifica = models.TextField("Visão Específica")
-    missao = models.TextField("Missão")
-    istoria_existencia = models.TextField("Istoria Existencia Paróquia SAJOBRIL")
-    situacao_geral = models.TextField("Situação Geral Paróquia SJB Liquiçá")
+    amu = models.CharField("Amu Parokia",null=True,blank=True,max_length=255)
+    naran_parokia = models.CharField("Naran Parokia",null=True,blank=True,max_length=255)
+    sigla_parokia = models.CharField("Sigla Parokia",null=True,blank=True,max_length=255)
+    address = models.CharField("Address Parokia",null=True,blank=True,max_length=255)
+    email = models.CharField("Email Parokia",null=True,blank=True,max_length=255)
+    phone = models.CharField("Phone Parokia",null=True,blank=True,max_length=255)
+    introdusaun = RichTextField("Introdusaun",null=True,blank=True,max_length=255)
+    visao_geral = RichTextField("Visão Geral",null=True, blank=True,max_length=255)
+    visao_especifica = RichTextField("Visão Específica",null=True, blank=True,max_length=255)
+    missao = RichTextField("Missão", null=True, blank=True)
+    istoria_existencia = RichTextField("Istoria Existencia Paróquia SAJOBRIL", null=True, blank=True)
+    situacao_geral = RichTextField("Situação Geral Paróquia SJB Liquiçá", null=True, blank=True)
     area_geografica = models.ImageField(upload_to='area_geografica_images/', null=True, blank=True, verbose_name="Área Geográfica Paróquia São João de Brito Liquiçá")
-    lian_nebe_usa = models.TextField("Lian nebé usa iha actividade liturgia")
+    lian_nebe_usa = models.TextField("Lian nebé usa iha actividade liturgia", null=True, blank=True)
     ecp = models.ImageField(upload_to='ecp_images/', null=True, blank=True,verbose_name='Estrutura Conselho Pastoral Paróquia (CPP)')
     cep = models.ImageField(upload_to='ecp_images/', null=True, blank=True,verbose_name='Estrutura Conselho Económico Paroquial (CEP)')
 
@@ -36,7 +37,7 @@ class PerfilParoquiaSAJOBRIL(BaseModel):
         verbose_name = "Perfil Paroquial SAJOBRIL"
         verbose_name_plural = "Perfis Paroquiais SAJOBRIL"
 
-        
+
 
 class Congregacao(BaseModel):
     nome = models.CharField("Nome da Congregação", max_length=255)
@@ -87,10 +88,10 @@ class GrupuCategorial(BaseModel):
         verbose_name_plural = "Grupos Categoriais"
 
 class ProfessorReligiaoCatolico(BaseModel):
-    nome = models.CharField("Nome", max_length=255)
-    data_nascimento = models.DateField("Data de Nascimento", blank=True, null=True)
-    telefone = models.CharField("Telefone", max_length=20, blank=True, null=True)
-    email = models.EmailField("Email", blank=True, null=True)
+    nome = models.CharField("Naran Completo", max_length=255)
+    fatinserviço = models.CharField("Fatin Serviço", max_length=255,blank=True, null=True)
+    estatuto = models.CharField("Estatuto (Recrutado)", max_length=255,blank=True, null=True)
+    kontaktu = models.CharField("Kontaktu", max_length=255, blank=True, null=True)
     descricao = models.TextField("Descrição", blank=True, null=True)
     foto = models.ImageField(upload_to='professores_religiao_catolico/', null=True, blank=True)
 
@@ -109,11 +110,11 @@ class PadreMadre(BaseModel):
         ('padre', 'Padre Liquiçá oan'),
         ('madre', 'Madre Liquiçá oan'),
     ]
-    nome = models.CharField("Nome", max_length=255)
+    nome = models.CharField("Naran Completo", max_length=255)
     tipo = models.CharField("Tipo", max_length=10, choices=GENDER_CHOICES)
-    data_nascimento = models.DateField("Data de Nascimento", blank=True, null=True)
-    telefone = models.CharField("Telefone", max_length=20, blank=True, null=True)
-    email = models.EmailField("Email", blank=True, null=True)
+    fatinnodataordenacao = models.DateField("Fatin no data Ordenação", blank=True, null=True)
+    fatinservico = models.DateField("Fatin Serviço", blank=True, null=True)
+    contacto = models.CharField("Contacto", max_length=20, blank=True, null=True)
     descricao = models.TextField("Descrição", blank=True, null=True)
     foto = models.ImageField(upload_to='padres_madres/', null=True, blank=True)
 
@@ -128,10 +129,9 @@ class PadreMadre(BaseModel):
         verbose_name_plural = "Padres/Madres"
 
 class EisSeminaristaExReligioso(BaseModel):
-    nome = models.CharField("Nome", max_length=255)
-    data_nascimento = models.DateField("Data de Nascimento", blank=True, null=True)
-    telefone = models.CharField("Telefone", max_length=20, blank=True, null=True)
-    email = models.EmailField("Email", blank=True, null=True)
+    nome = models.CharField("Naran Completo", max_length=255)
+    estadoeivil = models.DateField("Estado Civil", blank=True, null=True)
+    contacto = models.CharField("contacto", max_length=20, blank=True, null=True)
     descricao = models.TextField("Descrição", blank=True, null=True)
     foto = models.ImageField(upload_to='eis_seminaristas_ex_religiosos/', null=True, blank=True)
 

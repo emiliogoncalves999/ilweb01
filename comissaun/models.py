@@ -37,3 +37,6 @@ class PlanuComisaun(BaseModel):
     class Meta:
         verbose_name = "Plano da Comissão"
         verbose_name_plural = "Planos da Comissão"
+
+
+
