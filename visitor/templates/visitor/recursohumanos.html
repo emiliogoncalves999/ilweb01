@@ -60,9 +60,10 @@
                                     <thead>
                                         <tr>
                                             <th>Nome</th>
-                                            <th>Data de Nascimento</th>
-                                            <th>Telefone</th>
-                                            <th>Email</th>
+                                            <th>Fatin Serviço</th>
+                                            <th>Estatuto (Recrutado)</th>
+                                            <th>kontaktu</th>
+                                            <th>Descrição</th>
                                             <th>Foto</th>
                                         </tr>
                                     </thead>
@@ -70,9 +71,10 @@
                                         {% for profesor in profesor %}
                                         <tr>
                                             <td>{{ professor.nome }}</td>
-                                            <td>{{ professor.data_nascimento|date:"d/m/Y" }}</td>
-                                            <td>{{ professor.telefone }}</td>
-                                            <td>{{ professor.email }}</td>
+                                            <td>{{ professor.fatinserviço }}</td>
+                                            <td>{{ professor.estatuto }}</td>
+                                            <td>{{ professor.kontaktu }}</td>
+                                            <td>{{ professor.descricao }}</td>
                                             <td>
                                                 {% if professor.foto %}
                                                 <img src="{{ professor.foto.url }}" alt="{{ professor.nome }}"
@@ -101,9 +103,10 @@
                                     <tr>
                                         <th>Nome</th>
                                         <th>Tipo</th>
-                                        <th>Data de Nascimento</th>
-                                        <th>Telefone</th>
-                                        <th>Email</th>
+                                        <th>Fatin no data Ordenação</th>
+                                        <th>Fatin Serviço</th>
+                                        <th>Kontaktu</th>
+                                        <th>Descricao</th>
                                         <th>Foto</th>
                                     </tr>
                                 </thead>
@@ -112,9 +115,10 @@
                                     <tr>
                                         <td>{{ padre_madre.nome }}</td>
                                         <td>{{ padre_madre.get_tipo_display }}</td>
-                                        <td>{{ padre_madre.data_nascimento|date:"d/m/Y" }}</td>
-                                        <td>{{ padre_madre.telefone }}</td>
-                                        <td>{{ padre_madre.email }}</td>
+                                        <td>{{ padre_madre.fatinnodataordenacao }}</td>
+                                        <td>{{ padre_madre.fatinservico }}</td>
+                                        <td>{{ padre_madre.contacto }}</td>
+                                        <td>{{ padre_madre.descricao }}</td>
                                         <td>
                                             {% if padre_madre.foto %}
                                             <img src="{{ padre_madre.foto.url }}" alt="{{ padre_madre.nome }}"
@@ -141,9 +145,10 @@
                                     <tr>
                                         <th>Nome</th>
                                         <th>Tipo</th>
-                                        <th>Data de Nascimento</th>
-                                        <th>Telefone</th>
-                                        <th>Email</th>
+                                        <th>Fatin no data Ordenação</th>
+                                        <th>Fatin Serviço</th>
+                                        <th>Kontaktu</th>
+                                        <th>Descricao</th>
                                         <th>Foto</th>
                                     </tr>
                                 </thead>
@@ -152,9 +157,10 @@
                                     <tr>
                                         <td>{{ padre_madre.nome }}</td>
                                         <td>{{ padre_madre.get_tipo_display }}</td>
-                                        <td>{{ padre_madre.data_nascimento|date:"d/m/Y" }}</td>
-                                        <td>{{ padre_madre.telefone }}</td>
-                                        <td>{{ padre_madre.email }}</td>
+                                        <td>{{ padre_madre.fatinnodataordenacao }}</td>
+                                        <td>{{ padre_madre.fatinservico }}</td>
+                                        <td>{{ padre_madre.contacto }}</td>
+                                        <td>{{ padre_madre.descricao }}</td>
                                         <td>
                                             {% if padre_madre.foto %}
                                             <img src="{{ padre_madre.foto.url }}" alt="{{ padre_madre.nome }}"
@@ -180,9 +186,9 @@
                                 <thead>
                                     <tr>
                                         <th>Nome</th>
-                                        <th>Data de Nascimento</th>
-                                        <th>Telefone</th>
-                                        <th>Email</th>
+                                        <th>Estado Civil</th>
+                                        <th>Contacto</th>
+                                        <th>Descricao</th>
                                         <th>Foto</th>
                                     </tr>
                                 </thead>
@@ -190,9 +196,9 @@
                                     {% for seminarista in exseminarista %}
                                     <tr>
                                         <td>{{ seminarista.nome }}</td>
-                                        <td>{{ seminarista.data_nascimento|date:"d/m/Y" }}</td>
-                                        <td>{{ seminarista.telefone }}</td>
-                                        <td>{{ seminarista.email }}</td>
+                                        <td>{{ seminarista.estadoeivil }}</td>
+                                        <td>{{ seminarista.contacto }}</td>
+                                        <td>{{ seminarista.descricao }}</td>
                                         <td>
                                             {% if seminarista.foto %}
                                                 <img src="{{ seminarista.foto.url }}" alt="{{ seminarista.nome }}" width="50" height="50">
