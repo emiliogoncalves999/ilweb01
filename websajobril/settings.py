@@ -288,29 +288,13 @@ WSGI_APPLICATION = 'websajobril.wsgi.application'
 # }
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'mpgtl_web_sajobril',
-        'USER': 'aictiliq01',
-        'PASSWORD': 'aictiliq@01',
-        'HOST': 'mysql.s1091.sureserver.com',
-        'PORT': '3308',
-        'OPTIONS': {
-            'autocommit': True,
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
-    }
-}
-
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'mysql.connector.django',
 #         'NAME': 'mpgtl_web_sajobril',
-#         'USER': 'root',
-#         'PASSWORD': 'aictliq01@1693',
-#         'HOST': 'srv-captain--aictliq-mysql8-db',
+#         'USER': 'aictiliq01',
+#         'PASSWORD': 'aictiliq@01',
+#         'HOST': 'mysql.s1091.sureserver.com',
 #         'PORT': '3308',
 #         'OPTIONS': {
 #             'autocommit': True,
@@ -318,6 +302,22 @@ DATABASES = {
 #         },
 #     }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'mpgtl_web_sajobril',
+        'USER': 'root',
+        'PASSWORD': 'aictliq01@1693',
+        'HOST': 'srv-captain--aictliq-mysql8-db',
+        'PORT': '3308',
+        'OPTIONS': {
+            'autocommit': True,
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+    }
+}
 
 
 # Password validation
