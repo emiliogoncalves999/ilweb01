@@ -255,4 +255,37 @@
     }
 </style>
 
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function getQueryParam(param) {
+            let urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        let tabName = getQueryParam("tabname") || "cpp"; // Default to "padre" if no query param exists
+
+        let tabLink = document.querySelector(`a[href="#${tabName}"]`);
+        let tabContent = document.querySelector(`#${tabName}`);
+
+        if (tabLink && tabContent) {
+            // Remove active class from all tabs
+            document.querySelectorAll(".nav-tabs .nav-link").forEach(tab => {
+                tab.classList.remove("active");
+            });
+
+            document.querySelectorAll(".tab-content .tab-pane").forEach(tabPane => {
+                tabPane.classList.remove("show", "active");
+            });
+
+            // Activate the selected tab
+            tabLink.classList.add("active");
+            tabContent.classList.add("show", "active");
+        }
+    });
+</script>
+
+
+
 {% endblock %}
