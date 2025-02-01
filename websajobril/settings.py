@@ -30,6 +30,8 @@ ALLOWED_HOSTS = ['192.168.189.103','testweb.aictliq.org','sajobril.org','127.0.0
 
 CSRF_TRUSTED_ORIGINS = [
     'http://sajobril.org',
+    'http://web-sajobril.aictliq.org'
+    'https://web-sajobril.aictliq.org'
     'https://sajobril.tl', 
     ]
 
@@ -38,6 +40,8 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ALLOWED_ORIGINS = [
     "http://sajobril.org",
     "https://sajobril.tl",
+    "https://web-sajobril.aictliq.org",
+    "http://web-sajobril.aictliq.org",
 ]
 
 # Application definition
@@ -229,6 +233,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://sajobril.org",
     "https://sajobril.tl",
     "http://sajobril.tl",
+    "https://web-sajobril.aictliq.org",
+    "http://web-sajobril.aictliq.org",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -311,7 +317,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'aictliq01@1693',
         'HOST': 'srv-captain--aictliq-mysql8-db',
-        'PORT': '3308',
+        'PORT': '3306',
         'OPTIONS': {
             'autocommit': True,
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
