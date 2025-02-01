@@ -286,44 +286,44 @@ WSGI_APPLICATION = 'websajobril.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'mysql.connector.django',
-#         'NAME': 'mpgtl_web_sajobril',
-#         'USER': 'aictiliq01',
-#         'PASSWORD': 'aictiliq@01',
-#         'HOST': 'mysql.s1091.sureserver.com',
-#         'PORT': '3308',
-#         'OPTIONS': {
-#             'autocommit': True,
-#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-#         },
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
         'NAME': 'mpgtl_web_sajobril',
-        'USER': 'root',
-        'PASSWORD': 'aictliq01@1693',
-        'HOST': 'srv-captain--aictliq-mysql8-db',
-        'PORT': '3306',
+        'USER': 'aictiliq01',
+        'PASSWORD': 'aictiliq@01',
+        'HOST': 'mysql.s1091.sureserver.com',
+        'PORT': '3308',
         'OPTIONS': {
             'autocommit': True,
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mysql.connector.django',
+#         'NAME': 'mpgtl_web_sajobril',
+#         'USER': 'root',
+#         'PASSWORD': 'aictliq01@1693',
+#         'HOST': 'srv-captain--aictliq-mysql8-db',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'autocommit': True,
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+#         },
+#     }
+# }
 
 
 # Password validation
@@ -361,25 +361,25 @@ USE_TZ = True
 
 
 
-DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
-MINIO_STORAGE_ENDPOINT = 'aictliqminio-api.aictliq.org'
-MINIO_STORAGE_ACCESS_KEY = 'EWUHEk40Vrni8rBE'
-MINIO_STORAGE_SECRET_KEY = 'NGc2LNoj6PyftZ6167fRAAxNFL2ZwIWZ'
-MINIO_STORAGE_USE_HTTPS = False
-MINIO_STORAGE_MEDIA_OBJECT_METADATA = {"Cache-Control": "max-age=1000"}
-MINIO_STORAGE_MEDIA_BUCKET_NAME = 'web-sajobril'
-MINIO_STORAGE_MEDIA_BACKUP_BUCKET = 'Recycle Bin'
-MINIO_STORAGE_MEDIA_BACKUP_FORMAT = '%c/'
-MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = True
-MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = False
+# DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
+# MINIO_STORAGE_ENDPOINT = 'aictliqminio-api.aictliq.org'
+# MINIO_STORAGE_ACCESS_KEY = 'EWUHEk40Vrni8rBE'
+# MINIO_STORAGE_SECRET_KEY = 'NGc2LNoj6PyftZ6167fRAAxNFL2ZwIWZ'
+# MINIO_STORAGE_USE_HTTPS = False
+# MINIO_STORAGE_MEDIA_OBJECT_METADATA = {"Cache-Control": "max-age=1000"}
+# MINIO_STORAGE_MEDIA_BUCKET_NAME = 'web-sajobril'
+# MINIO_STORAGE_MEDIA_BACKUP_BUCKET = 'Recycle Bin'
+# MINIO_STORAGE_MEDIA_BACKUP_FORMAT = '%c/'
+# MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = True
+# MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = False
 
 
 
 
 
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 
 STATIC_URL = '/static/'

@@ -21,10 +21,10 @@ class PerfilParoquiaSAJOBRILAdmin(admin.ModelAdmin):
     display_area_geografica.short_description = "Área Geográfica"
 
     def display_ecp(self, obj):
-        if obj.ecp:
-            return format_html('<img src="{}" width="100" height="auto" />', obj.ecp.url)
+        if obj.ecppcep:
+            return format_html('<img src="{}" width="100" height="auto" />', obj.ecppcep.url)
         return "No Image"
-    display_ecp.short_description = "ECP Image"
+    display_ecp.short_description = "ESTRUTURA CPP-CEP"
 
 class CongregacaoAdmin(admin.ModelAdmin):
     exclude = ('user_created', 'is_deleted', 'date_created', 'date_modified')

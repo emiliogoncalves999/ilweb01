@@ -23,8 +23,9 @@ class PerfilParoquiaSAJOBRIL(BaseModel):
     situacao_geral = RichTextField("Situação Geral Paróquia SJB Liquiçá", null=True, blank=True)
     area_geografica = models.ImageField(upload_to='area_geografica_images/', null=True, blank=True, verbose_name="Área Geográfica Paróquia São João de Brito Liquiçá")
     lian_nebe_usa = models.TextField("Lian nebé usa iha actividade liturgia", null=True, blank=True)
-    ecp = models.ImageField(upload_to='ecp_images/', null=True, blank=True,verbose_name='Estrutura Conselho Pastoral Paróquia (CPP)')
-    cep = models.ImageField(upload_to='ecp_images/', null=True, blank=True,verbose_name='Estrutura Conselho Económico Paroquial (CEP)')
+    ecppcep  = models.ImageField(upload_to='ecp_images/', null=True, blank=True,verbose_name='ESTRUTURA CPP-CEP PAROQUIA SÃO JOÃO DE BRITO LIQUIÇÁ')
+    
+
 
 
     def __str__(self):
