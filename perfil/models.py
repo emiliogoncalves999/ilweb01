@@ -37,11 +37,13 @@ class PerfilParoquiaSAJOBRIL(BaseModel):
         verbose_name = "Perfil Paroquial SAJOBRIL"
         verbose_name_plural = "Perfis Paroquiais SAJOBRIL"
 
-
+# No	Naran Congregação	Fatin	Superiora Congregação	No. Contacto
 
 class Congregacao(BaseModel):
-    nome = models.CharField("Nome da Congregação", max_length=255)
-    deskrisau = models.TextField("Deskrisau")
+    nome = models.CharField("Naran Congregação", max_length=255)
+    fatinsuperioracongregacao = models.CharField("Fatin	Superiora Congregação", max_length=255,null=True, blank=True)
+    superioracongregacao = models.CharField("Superiora Congregação", max_length=255,null=True, blank=True)
+    nocontacto = models.CharField("No. Contacto", max_length=255,blank=True, null=True)
     imagen = models.ImageField(upload_to='congregacao/', blank=True, null=True, verbose_name="Imajen / Logo")
     file = models.FileField(upload_to='congregacoes/', null=True, blank=True)
 
@@ -55,9 +57,12 @@ class Congregacao(BaseModel):
         verbose_name = "Congregação"
         verbose_name_plural = "Congregações"
 
+
+
 class EskolaCatolico(BaseModel):
-    nome = models.CharField("Nome da Escola Católica", max_length=255)
-    deskrisau = models.TextField("Deskrisau")
+    nome = models.CharField("Naran Escola", max_length=255)
+    fatinestabelecimento = models.CharField("Fatin Estabelecimento", max_length=255, blank=True, null=True)
+    nocontacto = models.CharField("No. Kontaktu", max_length=255, blank=True, null=True)
     imagen = models.ImageField(upload_to='eskolacatolico/', blank=True, null=True, verbose_name="Imajen / Logo")
     file = models.FileField(upload_to='eskolas/', null=True, blank=True)
 
@@ -72,8 +77,10 @@ class EskolaCatolico(BaseModel):
         verbose_name_plural = "Escolas Católicas"
 
 class GrupuCategorial(BaseModel):
-    nome = models.CharField("Nome do Grupo Categorial", max_length=255)
-    deskrisau = models.TextField("Deskrisau")
+    nome = models.CharField("Naran Grupo Categoriais", max_length=255)
+    totalmembro = models.CharField("Total Membro" ,max_length=255, blank=True, null=True)
+    chefegrupo = models.CharField("Chefe Grupo",max_length=255, blank=True, null=True)
+    nocontacto = models.CharField("No. Contacto",max_length=255, blank=True, null=True)
     imagen = models.ImageField(upload_to='grupucategorial/', blank=True, null=True, verbose_name="Imajen / Logo")
     file = models.FileField(upload_to='grupus/', null=True, blank=True)
 
@@ -112,8 +119,8 @@ class PadreMadre(BaseModel):
     ]
     nome = models.CharField("Naran Completo", max_length=255)
     tipo = models.CharField("Tipo", max_length=10, choices=GENDER_CHOICES)
-    fatinnodataordenacao = models.DateField("Fatin no data Ordenação", blank=True, null=True)
-    fatinservico = models.DateField("Fatin Serviço", blank=True, null=True)
+    fatinnodataordenacao = models.CharField("Fatin no data Ordenação", blank=True, null=True,max_length=255)
+    fatinservico = models.CharField("Fatin Serviço", blank=True, null=True,max_length=255)
     contacto = models.CharField("Contacto", max_length=20, blank=True, null=True)
     descricao = models.TextField("Descrição", blank=True, null=True)
     foto = models.ImageField(upload_to='padres_madres/', null=True, blank=True)
@@ -130,7 +137,7 @@ class PadreMadre(BaseModel):
 
 class EisSeminaristaExReligioso(BaseModel):
     nome = models.CharField("Naran Completo", max_length=255)
-    estadoeivil = models.DateField("Estado Civil", blank=True, null=True)
+    estadoeivil = models.CharField("Estado Civil", blank=True, null=True,max_length=255)
     contacto = models.CharField("contacto", max_length=20, blank=True, null=True)
     descricao = models.TextField("Descrição", blank=True, null=True)
     foto = models.ImageField(upload_to='eis_seminaristas_ex_religiosos/', null=True, blank=True)

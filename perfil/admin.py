@@ -28,7 +28,7 @@ class PerfilParoquiaSAJOBRILAdmin(admin.ModelAdmin):
 
 class CongregacaoAdmin(admin.ModelAdmin):
     exclude = ('user_created', 'is_deleted', 'date_created', 'date_modified')
-    list_display = ('nome', 'deskrisau', 'display_file_link')
+    list_display = ('nome', 'fatinsuperioracongregacao','superioracongregacao','nocontacto', 'display_file_link')
 
     def display_file_link(self, obj):
         if obj.file:
@@ -38,7 +38,7 @@ class CongregacaoAdmin(admin.ModelAdmin):
 
 class EskolaCatolicoAdmin(admin.ModelAdmin):
     exclude = ('user_created', 'is_deleted', 'date_created', 'date_modified')
-    list_display = ('nome', 'deskrisau', 'display_file_link')
+    list_display = ('nome', 'fatinestabelecimento','nocontacto', 'display_file_link')
 
     def display_file_link(self, obj):
         if obj.file:
@@ -48,7 +48,7 @@ class EskolaCatolicoAdmin(admin.ModelAdmin):
 
 class GrupuCategorialAdmin(admin.ModelAdmin):
     exclude = ('user_created', 'is_deleted', 'date_created', 'date_modified')
-    list_display = ('nome', 'deskrisau', 'display_file_link')
+    list_display = ('nome', 'totalmembro', 'chefegrupo', 'nocontacto', 'display_file_link')
 
     def display_file_link(self, obj):
         if obj.file:

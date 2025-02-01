@@ -45,7 +45,6 @@ def index(request):
 
 
     totprof = ProfessorReligiaoCatolico.objects.all().count()
-    totmadre = ProfessorReligiaoCatolico.objects.all().count()
     totpadre = PadreMadre.objects.filter(tipo='padre').count()
     totmadre = PadreMadre.objects.filter(tipo='madre').count()
     totseminarista = EisSeminaristaExReligioso.objects.all().count()

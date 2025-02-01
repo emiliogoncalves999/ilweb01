@@ -5,50 +5,86 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-
-                <h2>Congregacao Sira</h2>
-                
-                <div class="row">
-                    {% for dados in congregacao %}
-                    <div class="col-12 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <!-- Column 1: Image/Logo -->
-                                    <div class="col-md-2 text-center">
-                                        {% if dados.imagen %}
-                                        <img src="{{ dados.imagen.url }}" alt="{{ dados.nome }}" class="img-fluid" style="max-width: 100px; max-height: 100px;">
-                                        {% else %}
-                                        <img src="https://via.placeholder.com/100" alt="No Logo" class="img-fluid">
-                                        {% endif %}
-                                    </div>
-
-                                    <!-- Column 2: Name/Description (Expanded Column) -->
-                                    <div class="col-md-7">
-                                        <h5 class="card-title">{{ dados.nome }}</h5>
-                                        <p class="card-text">{{ dados.deskrisau }}</p>
-                                    </div>
-
-                                    <!-- Column 3: Download Button -->
-                                    <div class="col-md-3 text-center">
-                                        {% if dados.file %}
-                                        <a href="{{ dados.file.url }}" class="btn btn-primary">Download dokumentu</a>
-                                        {% else %}
-                                        <p class="text-muted">File Laiha</p>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% empty %}
-                    <div class="col-12">
-                        <p>Nenhum congregacao registradu.</p>
-                    </div>
-                    {% endfor %}
+                <h2>Congregação Sira</h2>
+            
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="text-center">Logo</th>
+                                <th>Nome</th>
+                                <th>Fatin Superiora</th>
+                                <th>Superiora</th>
+                                <th>No. Contacto</th>
+                                <th class="text-center">Download</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for dados in congregacao %}
+                            <tr>
+                                <!-- Kolom Logo -->
+                                <td class="text-center">
+                                    {% if dados.imagen %}
+                                    <img src="{{ dados.imagen.url }}" alt="{{ dados.nome }}" class="img-fluid" style="max-width: 100px; max-height: 100px;">
+                                    {% else %}
+                                    <!-- Custom SVG Icon -->
+                                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="24" height="24" rx="5" fill="#e0e0e0"/>
+                                        <path d="M4 17L9 11L13 16L17 12L22 18" stroke="#757575" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="8.5" cy="7.5" r="1.5" fill="#757575"/>
+                                    </svg>
+                                    {% endif %}
+                                </td>
+                                
+                                <!-- Kolom Nama -->
+                                <td>{{ dados.nome }}</td>
+                                
+                                <!-- Kolom Fatin Superiora -->
+                                <td>
+                                    {% if dados.fatinsuperioracongregacao %}
+                                        {{ dados.fatinsuperioracongregacao }}
+                                    {% else %}
+                                        <span class="text-muted">Laiha</span>
+                                    {% endif %}
+                                </td>
+                                
+                                <!-- Kolom Superiora -->
+                                <td>
+                                    {% if dados.superioracongregacao %}
+                                        {{ dados.superioracongregacao }}
+                                    {% else %}
+                                        <span class="text-muted">Laiha</span>
+                                    {% endif %}
+                                </td>
+                                
+                                <!-- Kolom No. Contacto -->
+                                <td>
+                                    {% if dados.nocontacto %}
+                                        {{ dados.nocontacto }}
+                                    {% else %}
+                                        <span class="text-muted">Laiha</span>
+                                    {% endif %}
+                                </td>
+                                
+                                <!-- Kolom Download -->
+                                <td class="text-center">
+                                    {% if dados.file %}
+                                    <a href="{{ dados.file.url }}" class="btn btn-primary">Download Dokumentu</a>
+                                    {% else %}
+                                    <p class="text-muted">File Laiha</p>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center">Nenhum congregação registradu.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
-
             </div>
+            
         </div>
     </div>
 </section>

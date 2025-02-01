@@ -4,7 +4,7 @@
 <section class="ftco-section">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12"> 
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -54,47 +54,51 @@
                     </div>
                     <div class="tab-pane fade" id="professor" role="tabpanel" aria-labelledby="professor-tab">
     
-                            <div class="col-md-12">
-                                <h2>Lista de Professores de Religião Católico</h2>
-                                <table class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Fatin Serviço</th>
-                                            <th>Estatuto (Recrutado)</th>
-                                            <th>kontaktu</th>
-                                            <th>Descrição</th>
-                                            <th>Foto</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for profesor in profesor %}
-                                        <tr>
-                                            <td>{{ professor.nome }}</td>
-                                            <td>{{ professor.fatinserviço }}</td>
-                                            <td>{{ professor.estatuto }}</td>
-                                            <td>{{ professor.kontaktu }}</td>
-                                            <td>{{ professor.descricao }}</td>
-                                            <td>
-                                                {% if professor.foto %}
-                                                <img src="{{ professor.foto.url }}" alt="{{ professor.nome }}"
-                                                    width="50" height="50">
-                                                {% else %}
-                                                Sem foto
-                                                {% endif %}
-                                            </td>
-                                        </tr>
-                                        {% empty %}
-                                        <tr>
-                                            <td colspan="5">Nenhum professor encontrado.</td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
+                        <div class="col-md-12">
+                            <h2>Lista de Professores de Religião Católico</h2>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Fatin Serviço</th>
+                                        <th>Estatuto (Recrutado)</th>
+                                        <th>Kontaktu</th>
+                                        <th>Descrição</th>
+                                        <th>Foto</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for dados in profesor %}
+                                    <tr>
+                                        <td>{{ dados.nome }}</td>
+                                        <td>{{ dados.fatinserviço|default:"-" }}</td>
+                                        <td>{{ dados.estatuto|default:"-" }}</td>
+                                        <td>{{ dados.kontaktu|default:"-" }}</td>
+                                        <td>{{ dados.descricao|default:"Sem descrição" }}</td>
+                                        <td>
+                                            {% if dados.foto %}
+                                            <img src="{{ dados.foto.url }}" alt="{{ dados.nome }}" width="50" height="50">
+                                            {% else %}
+                                            Sem foto
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="6" class="text-center">Nenhum professor encontrado.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                                     
 
-                            </div>
+
+                            
                      
                     </div>
+
                     <div class="tab-pane fade" id="padre" role="tabpanel" aria-labelledby="padre-tab">
                         <div class="col-md-12">
                             <h2>Lista de Padres</h2>
@@ -111,18 +115,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for padre_madre in padre %}
+                                    {% for dados in padre %}
                                     <tr>
-                                        <td>{{ padre_madre.nome }}</td>
-                                        <td>{{ padre_madre.get_tipo_display }}</td>
-                                        <td>{{ padre_madre.fatinnodataordenacao }}</td>
-                                        <td>{{ padre_madre.fatinservico }}</td>
-                                        <td>{{ padre_madre.contacto }}</td>
-                                        <td>{{ padre_madre.descricao }}</td>
+                                        <td>{{ dados.nome }}</td>
+                                        <td>{{ dados.get_tipo_display }}</td>
+                                        <td>{{ dados.fatinnodataordenacao }}</td>
+                                        <td>{{ dados.fatinservico }}</td>
+                                        <td>{{ dados.contacto }}</td>
+                                        <td>{{ dados.descricao }}</td>
                                         <td>
-                                            {% if padre_madre.foto %}
-                                            <img src="{{ padre_madre.foto.url }}" alt="{{ padre_madre.nome }}"
-                                                width="50" height="50">
+                                            {% if dados.foto %}
+                                            <img src="{{ dados.foto.url }}" alt="{{ dados.nome }}" width="50" height="50">
                                             {% else %}
                                             Sem foto
                                             {% endif %}
@@ -130,13 +133,14 @@
                                     </tr>
                                     {% empty %}
                                     <tr>
-                                        <td colspan="6">Nenhum padre ou madre encontrado.</td>
+                                        <td colspan="7">Nenhum padre encontrado.</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    
                     <div class="tab-pane fade" id="madre" role="tabpanel" aria-labelledby="madre-tab">
                         <div class="col-md-12 mt-5">
                             <h2>Lista de Madres</h2>
@@ -153,18 +157,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for padre_madre in madre %}
+                                    {% for dados in madre %}
                                     <tr>
-                                        <td>{{ padre_madre.nome }}</td>
-                                        <td>{{ padre_madre.get_tipo_display }}</td>
-                                        <td>{{ padre_madre.fatinnodataordenacao }}</td>
-                                        <td>{{ padre_madre.fatinservico }}</td>
-                                        <td>{{ padre_madre.contacto }}</td>
-                                        <td>{{ padre_madre.descricao }}</td>
+                                        <td>{{ dados.nome }}</td>
+                                        <td>{{ dados.get_tipo_display }}</td>
+                                        <td>{{ dados.fatinnodataordenacao }}</td>
+                                        <td>{{ dados.fatinservico }}</td>
+                                        <td>{{ dados.contacto }}</td>
+                                        <td>{{ dados.descricao }}</td>
                                         <td>
-                                            {% if padre_madre.foto %}
-                                            <img src="{{ padre_madre.foto.url }}" alt="{{ padre_madre.nome }}"
-                                                width="50" height="50">
+                                            {% if dados.foto %}
+                                            <img src="{{ dados.foto.url }}" alt="{{ dados.nome }}" width="50" height="50">
                                             {% else %}
                                             Sem foto
                                             {% endif %}
@@ -172,13 +175,15 @@
                                     </tr>
                                     {% empty %}
                                     <tr>
-                                        <td colspan="6">Nenhum padre ou madre encontrado.</td>
+                                        <td colspan="7">Nenhum madre encontrado.</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    
+
                     <div class="tab-pane fade" id="exseminarista" role="tabpanel" aria-labelledby="exseminarista-tab">
                         <div class="col-md-12 mt-5">
                             <h2>Lista de Eis-Seminaristas e Ex-Religiosos/as</h2>
@@ -188,7 +193,7 @@
                                         <th>Nome</th>
                                         <th>Estado Civil</th>
                                         <th>Contacto</th>
-                                        <th>Descricao</th>
+                                        <th>Descrição</th>
                                         <th>Foto</th>
                                     </tr>
                                 </thead>
@@ -196,9 +201,9 @@
                                     {% for seminarista in exseminarista %}
                                     <tr>
                                         <td>{{ seminarista.nome }}</td>
-                                        <td>{{ seminarista.estadoeivil }}</td>
-                                        <td>{{ seminarista.contacto }}</td>
-                                        <td>{{ seminarista.descricao }}</td>
+                                        <td>{{ seminarista.estadoeivil|default:"-" }}</td>
+                                        <td>{{ seminarista.contacto|default:"-" }}</td>
+                                        <td>{{ seminarista.descricao|default:"Sem descrição" }}</td>
                                         <td>
                                             {% if seminarista.foto %}
                                                 <img src="{{ seminarista.foto.url }}" alt="{{ seminarista.nome }}" width="50" height="50">
@@ -209,13 +214,19 @@
                                     </tr>
                                     {% empty %}
                                     <tr>
-                                        <td colspan="5">Nenhum eis-seminarista ou ex-religioso encontrado.</td>
+                                        <td colspan="5" class="text-center">Nenhum eis-seminarista ou ex-religioso encontrado.</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    
+
+
+
+
+                    
                 </div>
             </div>
         </div>
