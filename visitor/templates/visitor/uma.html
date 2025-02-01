@@ -79,8 +79,8 @@
                     </svg>
                 </div>
                 <div class="col text-start">
-                    <h6 class="mb-0">Total Congregacao (<span id="total_congregacao">0</span>)</h6>
-                    <button class="btn btn-light btn-sm mt-2">Hare Detallu</button>
+                    <h6 class="mb-0">Total Congregacao (<span id="total_congregacao">{{totcon}}</span>)</h6>
+                    <a href="{% url 'vizitor:congregacao' %}" class="btn btn-light btn-sm mt-2">Hare Detallu</a>
                 </div>
             </div>
         </div>
@@ -95,8 +95,8 @@
                     </svg>
                 </div>
                 <div class="col text-start">
-                    <h6 class="mb-0">Total Eskola Catolico (<span id="total_eskola_catolico">0</span>)</h6>
-                    <button class="btn btn-dark btn-sm mt-2">Hare Detallu</button>
+                    <h6 class="mb-0">Total Eskola Catolico (<span id="total_eskola_catolico">{{toteskola}}</span>)</h6>
+                    <a href="{% url 'vizitor:eskolacatolico' %}" class="btn btn-light btn-sm mt-2">Hare Detallu</a>
                 </div>
             </div>
         </div>
@@ -111,8 +111,8 @@
                     </svg>
                 </div>
                 <div class="col text-start">
-                    <h6 class="mb-0">Total Grupu Categorial (<span id="total_grupu_categorial">0</span>)</h6>
-                    <button class="btn btn-light btn-sm mt-2">Hare Detallu</button>
+                    <h6 class="mb-0">Total Grupu Categorial (<span id="total_grupu_categorial">{{totgc}}</span>)</h6>
+                    <a href="{% url 'vizitor:grupucategorial' %}" class="btn btn-light btn-sm mt-2">Hare Detallu</a>
                 </div>
             </div>
         </div>

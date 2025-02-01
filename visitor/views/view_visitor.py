@@ -50,6 +50,11 @@ def index(request):
     totseminarista = EisSeminaristaExReligioso.objects.all().count()
 
 
+    toteskola = EskolaCatolico.objects.all().count()
+    totcon = Congregacao.objects.all().count()
+    totgc = GrupuCategorial.objects.all().count()
+
+
     atividades = Atividade.objects.all().order_by('id')
 
     total_atividade = Atividade.objects.all().count()
@@ -69,6 +74,9 @@ def index(request):
 
     context = {
         'total_atividade' : total_atividade,
+        'toteskola' : toteskola,
+        'totcon' : totcon,
+        'totgc' : totgc,
         'perfil' : perfil,
         'total_planu' : total_planu,
         'total_atendimentu' : total_atendimentu,
