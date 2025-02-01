@@ -406,6 +406,7 @@ def comissaun(request):
     return render(request, 'visitor/comissaun.html', context)
 
 def planudezenvolvimentu(request): 
+    
     perfil = PerfilParoquiaSAJOBRIL.objects.get(id=1)
     years = DettaluPlano.objects.values_list('year', flat=True).distinct().order_by('year')
     comissoes = Planu.objects.prefetch_related('dettaluplano_set').all()
