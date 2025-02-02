@@ -1,56 +1,185 @@
 {% extends 'visitor/baze.html' %}
 {% block content %}
-<section class="home-slider owl-carousel">
-    <div class="slider-item" style="background-image:url(../static/images/download.jpg);" data-stellar-background-ratio="0.5">
-        <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
-        <div class="col-md-8 text ftco-animate">
-          <h1 class="mb-12" style="text-shadow: 5px 0px 10px rgba(0,0,0,0.98); color: rgb(211, 202, 155);">  PAROQUIA SÃO JOÃO DE BRITO LIQUIÇÁ</h1>
-          <h3 class="subheading" style="text-shadow: 5px 0px 4px rgba(0, 0, 0, 0.98); color: white;">
-            Ad maiora natus sum ,  "Hau moris ba buat bo'ot-liu."
-        </h3>
-          <p><a href="{% url 'vizitor:comissaun' %}" class="btn btn-secondary px-4 py-3 mt-3">Planu Anual Sajobril</a></p>
-        </div>
-        
-        <div class="col-md-4 ftco-animate fadeInUp ftco-animated">
-          <div class="blog-entry">
-            <div class="text bg-white p-4">
-              <h3 class="heading">
-                <a href="#">
-                  <center>
-                    <b>
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2v4" stroke="black" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M10 6h4" stroke="black" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M5 12l7-6 7 6v8H5v-8z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <rect x="9" y="14" width="6" height="6" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    
-                    
-                    
-                    Benvindu ba Website Oficial Paróquia São João de Brito, Liquiça! Iha ne'e, ita bele hetan informasaun no rekursu relijiozu ne'ebé suporta missão Parókia. Deus fo bença!
-                    </b>
-                  </center>
-                </a>
-              </h3>
-        
-            </div>
+<section class="stellar-custom-section">
+  <div class="container">
+      <div class="stellar-slider-item">
+          <div class="row no-gutters stellar-slider-text align-items-center justify-content-start">
+              <div class="col-md-8 text ftco-animate">
+                  <h1 class="stellar-title">
+                      PAROQUIA SÃO JOÃO DE BRITO LIQUIÇÁ
+                  </h1>
+                  <h3 class="stellar-subheading">
+                      Ad maiora natus sum , "Hau moris ba buat bo'ot-liu."
+                  </h3>
+                  <p>
+                    <br>
+                    <br>
+                    <center>
+                      <a href="{% url 'vizitor:comissaun' %}" class="btn btn-secondary py-2 px-3">Planu Anual Sajobril</a> <br> <br>
+               
+                    </center>
+                  </p>
+              </div>
+
+              <div class="col-md-4 ftco-animate fadeInUp ftco-animated">
+                  <div class="stellar-blog-entry">
+                      <div class="stellar-text-box">
+                          <h3 class="stellar-heading">
+                              <a href="#">
+                                  <center>
+                                      <b>
+                                          <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M12 2v4" stroke="black" stroke-width="2" stroke-linecap="round"/>
+                                              <path d="M10 6h4" stroke="black" stroke-width="2" stroke-linecap="round"/>
+                                              <path d="M5 12l7-6 7 6v8H5v-8z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                              <rect x="9" y="14" width="6" height="6" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                          </svg>
+                                          <br> 
+                                          Benvindu ba Website Oficial Paróquia São João de Brito, Liquiça! Iha ne'e, ita bele hetan informasaun no rekursu relijiozu ne'ebé suporta missão Parókia. Deus fo bença!
+                                      </b>
+                                  </center>
+                              </a>
+                          </h3>
+                      </div>
+                  </div>
+              </div>
           </div>
-        </div>
-                                                                                              
-
-
-
-
-
-        
       </div>
-      </div>
-    </div>
+  </div>
+</section>
 
+<style>
+  .stellar-custom-section {
+      width: 100%;
+      height: auto;
+      padding: 50px 0;
+      background-image: url(../static/images/download.jpg);
+      background-size: cover;
+      background-position: top left;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
 
-  </section>
+  .stellar-slider-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+  }
+
+  .container {
+      max-width: 1140px;
+      margin: auto;
+  }
+
+  .stellar-title {
+      text-align: left;
+      color: rgb(211, 202, 155);
+      text-shadow: 6px 0px 15px rgba(0,0,0,0.9);
+      font-size: 3vw;
+      font-weight: bold;
+      margin-bottom: 20px;
+  }
+
+  .stellar-subheading {
+      text-align: left;
+      color: white;
+      text-shadow: 4px 0px 6px rgba(0, 0, 0, 0.98);
+      font-size: 1vw;
+      margin-bottom: 25px;
+  }
+
+  .stellar-btn {
+      background-color: #ff8000;
+      border: none;
+      padding: 10px 25px;
+      font-size: 1vw;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      border-radius: 10%;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-block;
+  }
+
+  .stellar-btn:hover {
+      background-color: #e63946;
+      transform: scale(1.05);
+  }
+
+  .stellar-blog-entry {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      max-width: 400px;
+      margin: auto;
+  }
+
+  .stellar-text-box {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+  }
+
+  .stellar-heading {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+  }
+
+  @media (max-width: 1024px) {
+      .stellar-title {
+          font-size: 5vw;
+      }
+      .stellar-subheading {
+          font-size: 3vw;
+      }
+      .stellar-btn {
+          font-size: 2vw;
+          padding: 12px 20px;
+      }
+      .stellar-blog-entry {
+          max-width: 350px;
+      }
+  }
+
+  @media (max-width: 768px) {
+      .stellar-title {
+          font-size: 6vw;
+          text-align: center;
+      }
+      .stellar-subheading {
+          font-size: 3.5vw;
+          text-align: center;
+      }
+      .stellar-btn {
+          font-size: 2.5vw;
+          padding: 10px 18px;
+      }
+      .stellar-blog-entry {
+          max-width: 300px;
+      }
+  }
+
+  @media (max-width: 480px) {
+      .stellar-title {
+          font-size: 7vw;
+          text-align: center;
+      }
+      .stellar-subheading {
+          font-size: 4vw;
+          text-align: center;
+      }
+      .stellar-btn {
+          font-size: 3vw;
+          padding: 8px 16px;
+      }
+  }
+</style>
 
 
 
