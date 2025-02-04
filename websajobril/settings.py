@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-le9f=uo3n*$4gk3%uohsp55$4ni&oz40h4fnf_)013y3g!6)b4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.189.103','testweb.aictliq.org','sajobril.org','127.0.0.1','sajobril.aictliq.org','sajobril.tl']
+ALLOWED_HOSTS = ['192.168.189.103','testweb.aictliq.org','sajobril.org','127.0.0.1','sajobril.aictliq.org','sajobril.tl','www.sajobril.tl']
 
 CSRF_TRUSTED_ORIGINS = [
     'http://www.sajobril.org',
@@ -40,6 +40,7 @@ CSRF_TRUSTED_ORIGINS = [
     
     'https://sajobril.tl', 
     'http://sajobril.tl', 
+
     ]
 
 
@@ -52,6 +53,7 @@ CORS_ALLOWED_ORIGINS = [
 
     "https://sajobril.tl",
     "http://sajobril.tl",
+
     "https://www.sajobril.tl",
     "http://www.sajobril.tl",
 
@@ -248,6 +250,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://sajobril.org",
     "https://sajobril.tl",
     "http://sajobril.tl",
+    "https://www.sajobril.org",
+    "http://www.sajobril.org",
     "https://web-sajobril.aictliq.org",
     "http://web-sajobril.aictliq.org",
 ]

@@ -13,17 +13,17 @@
                         <div class="topic-section p-4 border rounded shadow-sm">
                             <h2 class="topic-title">Missao</h2>
                             <p>
-                               {{perfil.missao}}
+                               {{perfil.missao|safe}}
                             </p>
                         </div>
 
                         <div class="topic-section p-4 border rounded shadow-sm">
                             <h2 class="topic-title">Visão Geral</h2>
-                            <p> {{perfil.visao_geral}}</p>
+                            <p> {{perfil.visao_gera|safe}}</p>
 
                             <h2 class="topic-title">Visão Espesífica</h2>
                             <p>
-                                {{perfil.visao_especifica}}
+                                {{perfil.visao_especifica|safe}}
                                </p>
                         </div>
 
@@ -52,7 +52,7 @@
                         <div class="topic-section p-4 border rounded shadow-sm h-100">
                             <h2 class="topic-title">Lian nebé usa iha actividade liturgia</h2>
                             <p>
-                               {{perfil.lian_nebe_usa}}
+                               {{perfil.lian_nebe_usa|safe}}
                             </p>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                         <div class="topic-section p-4 border rounded shadow-sm h-100">
                             <h2 class="topic-title">Istoria Existencia Paroquia SAJOBRIL</h2>
                             <p>
-                               {{perfil.istoria_existencia}}
+                               {{perfil.istoria_existencia|safe}}
                             </p>
                         </div>
                     </div>
